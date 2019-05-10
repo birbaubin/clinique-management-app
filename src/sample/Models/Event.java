@@ -1,6 +1,9 @@
 package sample.Models;
 
-public class Event {
+
+import sample.DAO.Model;
+
+public class Event extends Model {
 
     private String name;
     private String date;

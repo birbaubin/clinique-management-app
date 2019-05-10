@@ -1,6 +1,8 @@
 package sample.Models;
 
-public class User {
+import sample.DAO.Model;
+
+public class User extends Model {
 
     private String firstname;
     private  String lastname;
@@ -10,12 +12,25 @@ public class User {
     private String password;
     private String level;
 
+
+    public void setArgs(String[] args) {
+        this.args = args;
+    }
+
     public String getFirstname() {
         return firstname;
     }
 
     public String getBirthday() {
         return birthday;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public void setBirthday(String birthday) {
