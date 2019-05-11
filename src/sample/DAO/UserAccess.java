@@ -4,26 +4,26 @@ import sample.Models.User;
 
 import java.util.ArrayList;
 
-public class UserAccess{
+public class UserAccess {
 
-    public void store(User user)
+    public static void store(User user)
     {
         Access.store(user);
     }
 
-    public void update(User user, int id){
+    public static void update(User user, int id){
 
         Access.update(user, id);
     }
 
     public static void delete(int id)
     {
-        Access.delete("user", id);
+        Access.delete("users", id);
     }
 
 
-    public ArrayList getAll()
+    public static ArrayList getAll()
     {
-       return Access.getAll("user");
+       return Access.getAll("users");
     }
 }

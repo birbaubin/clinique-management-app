@@ -9,6 +9,23 @@ public class Event extends Model {
     private String date;
     private String description;
 
+    public Event()
+    {
+        setArgs();
+        setTable();
+    }
+
+    private void setArgs()
+    {
+        this.args = new String[]{"name", "date", "description"};
+    }
+
+    private void setTable()
+    {
+        this.table = "events";
+    }
+
+
     public String getDate()
     {
         return date;
@@ -41,5 +58,10 @@ public class Event extends Model {
     public void setDescription(String _desc)
     {
         description = _desc;
+    }
+
+    public String[] getAttributes()
+    {
+        return new String[]{name, date, description};
     }
 }

@@ -1,5 +1,6 @@
 package sample.Models;
 
+import sample.DAO.Hash;
 import sample.DAO.Model;
 
 public class User extends Model {
@@ -13,8 +14,20 @@ public class User extends Model {
     private String level;
 
 
-    public void setArgs(String[] args) {
-        this.args = args;
+    public User(){
+        this.setArgs();
+        this.setTable();
+    }
+
+
+    private void setArgs()
+    {
+        this.args = new String[]{"firstname", "lastname", "birthday", "cne", "email", "password", "level"};
+    }
+
+    private void setTable()
+    {
+        this.table = "users";
     }
 
     public String getFirstname() {
@@ -72,4 +85,13 @@ public class User extends Model {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
+
+    public String[] getAttributes()
+    {
+        String[] result = new String[]{firstname, lastname, birthday, cne, email, Hash.getSecurePassword(password), level};
+        return result;
+    }
+
+
+
 }

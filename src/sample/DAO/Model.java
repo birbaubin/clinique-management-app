@@ -1,11 +1,11 @@
 package sample.DAO;
 
-public class Model {
+public abstract  class Model {
 
     protected String table;
-    protected String [] args;
+    protected String[] args;
 
-    public String [] getArgs()
+    public String[] getArgs()
     {
         return args;
     }
@@ -13,4 +13,7 @@ public class Model {
     public String getTable() {
         return table;
     }
+
+    public abstract String[] getAttributes();
+
 }

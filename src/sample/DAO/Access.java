@@ -1,7 +1,5 @@
 package sample.DAO;
 
-import sample.Models.User;
-import sample.Models.Event;
 import sample.database.AppConnection;
 
 import java.sql.*;
@@ -15,116 +13,95 @@ public class Access {
 
     public static void store(Model model)
     {
-
         //if we want to add a user...
-       if(model instanceof User)
-       {
-           request = "insert into users (firstname, lastname, email, password, birthday, cne, level) values (?, ?, ?, ?, ?, ?, ?)";
-           System.out.println(request);
+        String request = "insert into "+model.getTable()+" (";
 
-          try{
-               PreparedStatement st = con.prepareStatement(request);
-               st.setString(1, ((User) model).getFirstname());
-              st.setString(2, ((User) model).getLastname());
-              st.setString(3, ((User) model).getEmail());
-              st.setString(4, Hash.getSecurePassword(((User) model).getPassword()));
-              st.setString(5, ((User) model).getBirthday());
-              st.setString(6, ((User) model).getCne());
-              st.setString(7, ((User) model).getLevel());
-               st.execute();
-           }
-           catch (Exception e)
-           {
-               System.out.println(e.getMessage());
-               e.printStackTrace();
-           }
+        //loop through the args and add them to the request
 
-         System.out.println("Data stored !");
+        int nbreArgs = model.getArgs().length;
+        for(int i = 0; i<nbreArgs-1; i++)
+        {
+            request+=model.getArgs()[i]+", ";
+        }
+        request+=model.getArgs()[model.getArgs().length-1]+") values ('";
 
-       }
 
-       else{
 
-           //if it is an event...
-           if(model instanceof Event)
-           {
-                request = "insert into events (name, description, date) values (?, ?, ?)";
-                System.out.println(request);
+        //loop through the attributes and add them to the request
 
-               try{
-                   PreparedStatement st = con.prepareStatement(request);
-                   st.setString(1, ((Event) model).getName());
-                   st.setString(2, ((Event) model).getDescription());
-                   st.setString(3, ((Event) model).getDate());
-                   st.execute();
-               }
-               catch (Exception e)
-               {
-                   System.out.println(e.getMessage());
-                   e.printStackTrace();
-               }
-           }
-       }
+        int nbreAttributes = model.getAttributes().length;
+        for(int i = 0; i < nbreAttributes-1; i++)
+        {
+            request+= model.getAttributes()[i]+"', '";
+        }
+        request+=model.getAttributes()[nbreAttributes-1]+"');";
+
+        System.out.println(request);
+       try{
+
+            PreparedStatement st = con.prepareStatement(request);
+            st.execute();
+            System.out.println("Data stored");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void update(Model model, int id)
     {
-        if(model instanceof User)
-        {
-            request = "update users set firstname = ?, lastname = ?, birthday = ?, email = ?, password = ?, cne = ?, level = ? where id = ?";
+            request = "update "+model.getTable()+" set ";
+
+            //loop through args and attributes and add them to the request
+
+            int nbreArgs = model.getArgs().length;
+            for(int i = 0; i < nbreArgs-1; i++) {
+
+                request+=model.getArgs()[i]+" = '"+model.getAttributes()[i]+"', ";
+            }
+            request+=model.getArgs()[nbreArgs-1]+" = '"+model.getAttributes()[nbreArgs-1]+"' where id = "+id+";";
+           System.out.println(request);
+        //" where id = "+id+";"
             try{
                 PreparedStatement st = con.prepareStatement(request);
-                st.setString(1, ((User) model).getFirstname());
-                st.setString(2, ((User) model).getLastname());
-                st.setString(3, ((User) model).getBirthday());
-                st.setString(4, ((User) model).getEmail());
-                st.setString(5, Hash.getSecurePassword(((User) model).getPassword()));
-                st.setString(6, ((User) model).getCne());
-                st.setString(7, ((User) model).getLevel());
-                st.setInt(8, id);
                 st.execute();
+                System.out.println("Data updated");
             }
             catch (Exception e)
             {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
-        }
+
     }
 
-    public static void delete(String model, int id)
+    public static void delete(String  model, int id)
     {
-        if(model =="user")
+        request = "delete from "+model+" where id = "+id+";";
+        try{
+            PreparedStatement st = con.prepareStatement(request);
+            st.execute();
+            System.out.println("Data deleted");
+        }
+        catch (Exception e)
         {
-            System.out.println("You want to delete a user");
-            request = "delete from users where id = ?";
-
-            try{
-                PreparedStatement st = con.prepareStatement(request);
-                st.setInt(1, id);
-                st.execute();
-            }
-            catch (Exception e)
-            {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 
     public static ArrayList getAll(String model) {
 
         ArrayList result = new ArrayList();
-        if (model == "user") {
-            request = "select * from users";
-            ResultSet resultset = null;
+        request  = "select * from "+model+";";
+        ResultSet resultset = null;
 
-            try {
-                Statement st = con.createStatement();
-                resultset = st.executeQuery(request);
-                ResultSetMetaData rsmd = resultset.getMetaData();
-                int columnNumber = resultset.getMetaData().getColumnCount();
-                while (resultset.next()) {
+        try {
+            Statement st = con.createStatement();
+            resultset = st.executeQuery(request);
+            ResultSetMetaData rsmd = resultset.getMetaData();
+            int columnNumber = resultset.getMetaData().getColumnCount();
+            while (resultset.next()) {
 
                     HashMap<String, String> row = new HashMap<String, String>();
                     for(int i = 1; i<=columnNumber; i++) {
@@ -137,7 +114,6 @@ public class Access {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
             }
-        }
         return result;
     }
 
