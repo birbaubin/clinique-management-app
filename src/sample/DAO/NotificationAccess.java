@@ -1,29 +1,31 @@
 package sample.DAO;
 
-import sample.Models.Event;
+import sample.Models.Notification;
 
 import java.util.ArrayList;
 
 public class NotificationAccess {
 
-    public static void store(Event event)
+    public static void store(Notification notif)
     {
-        Access.store(event);
+        Access.store(notif);
     }
 
-    public static void update(Event event, int id){
+    public static void update(Notification notif, int id){
 
-        Access.update(event, id);
+        Access.update(notif, id);
     }
 
     public  static void delete(int id)
     {
-        Access.delete("events", id);
+        Access.delete("notifications", id);
     }
 
 
     public static ArrayList getAll()
     {
-        return Access.getAll("events");
+        return Access.getAll("notifications");
     }
+
+
 }

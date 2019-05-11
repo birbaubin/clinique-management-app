@@ -1,4 +1,4 @@
-package sample.DAO;
+package sample.Models;
 
 public abstract  class Model {
 
@@ -14,6 +14,6 @@ public abstract  class Model {
         return table;
     }
 
-    public abstract String[] getAttributes();
+    public abstract Object[] getAttributes();
 
 }

@@ -1,7 +1,6 @@
 package sample.Models;
 
 import sample.DAO.Hash;
-import sample.DAO.Model;
 
 public class User extends Model {
 

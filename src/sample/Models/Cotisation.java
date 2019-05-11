@@ -1,10 +1,24 @@
 package sample.Models;
 
-public class Cotisation {
+public class Cotisation extends Model{
 
     private double amount;
     private String description;
     private String timeLimit;
+
+
+    private void setArgs(){
+        this.args = new String[]{"amount", "description", "timeLimit"};
+    }
+
+    private void setTable(){
+        this.table = "cotisations";
+    }
+
+    public Cotisation(){
+        setTable();
+        setArgs();
+    }
 
     public double getAmount() {
         return amount;
@@ -29,4 +43,10 @@ public class Cotisation {
     public void setTimeLimit(String timeLimit) {
         this.timeLimit = timeLimit;
     }
+
+    public Object[] getAttributes()
+    {
+        return new Object[]{amount, description, timeLimit};
+    }
+
 }

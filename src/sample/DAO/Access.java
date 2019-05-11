@@ -1,5 +1,6 @@
 package sample.DAO;
 
+import sample.Models.Model;
 import sample.database.AppConnection;
 
 import java.sql.*;
@@ -23,18 +24,25 @@ public class Access {
         {
             request+=model.getArgs()[i]+", ";
         }
-        request+=model.getArgs()[model.getArgs().length-1]+") values ('";
+        request+=model.getArgs()[model.getArgs().length-1]+") values (";
 
 
 
         //loop through the attributes and add them to the request
 
         int nbreAttributes = model.getAttributes().length;
+        Object attribute = null;
         for(int i = 0; i < nbreAttributes-1; i++)
         {
-            request+= model.getAttributes()[i]+"', '";
+            attribute = model.getAttributes()[i];
+            if(attribute !=null)
+                attribute = "'"+attribute+"'";
+            request+= attribute+", ";
         }
-        request+=model.getAttributes()[nbreAttributes-1]+"');";
+        attribute = model.getAttributes()[nbreAttributes-1];
+        if(attribute!=null)
+            attribute = "'"+attribute+"'";
+        request+=attribute+");";
 
         System.out.println(request);
        try{

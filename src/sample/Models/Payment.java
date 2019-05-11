@@ -1,10 +1,25 @@
 package sample.Models;
 
-public class Payment {
+public class Payment extends Model{
 
     private String date;
     private int cotisation_id;
     private int member_id;
+
+
+    public Payment()
+    {
+        setArgs();
+        setTable();
+    }
+
+    private void setArgs(){
+        this.args = new String[]{"date", "cotisation_id", "member_id"};
+    }
+
+    private void setTable() {
+        this.table = "payments";
+    }
 
     public String getDate() {
         return date;
@@ -28,5 +43,10 @@ public class Payment {
 
     public void setMember_id(int member_id) {
         this.member_id = member_id;
+    }
+
+    public Object[] getAttributes()
+    {
+        return new Object[]{date, cotisation_id, member_id};
     }
 }

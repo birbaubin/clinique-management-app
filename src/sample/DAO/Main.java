@@ -1,7 +1,6 @@
 package sample.DAO;
 
-import sample.Models.Event;
-import sample.Models.User;
+import sample.Models.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +9,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Event event  = new Event();
-        event.setName("COnférence de bor");
-        event.setDescription("Be there");
-        event.setDate("2019-03-03");
-        EventAccess.delete(3);
+
+        //NotificationAccess.delete(3);
+        //EventAccess.delete(3);
+        Cotisation cota = new Cotisation();
+        cota.setAmount(1007);
+        cota.setDescription("Payer un gamous");
+        cota.setTimeLimit("2019-06-06");
+        CotisationAccess.store(cota);
 
     }
 

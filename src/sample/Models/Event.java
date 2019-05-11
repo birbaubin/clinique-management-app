@@ -1,8 +1,6 @@
 package sample.Models;
 
 
-import sample.DAO.Model;
-
 public class Event extends Model {
 
     private String name;
