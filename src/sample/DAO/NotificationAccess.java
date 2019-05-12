@@ -3,6 +3,7 @@ package sample.DAO;
 import sample.Models.Notification;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class NotificationAccess {
 
@@ -18,14 +19,15 @@ public class NotificationAccess {
 
     public  static void delete(int id)
     {
-        Access.delete("notifications", id);
+        Access.delete(new Notification().getTable(), id);
     }
 
 
     public static ArrayList getAll()
     {
-        return Access.getAll("notifications");
+        return Access.getAll(new Notification().getTable());
     }
 
+    public static ArrayList search(HashMap<String, String> pattern){ return Access.search(pattern, new Notification().getTable());}
 
 }

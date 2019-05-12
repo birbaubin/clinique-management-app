@@ -13,14 +13,13 @@ public class Event extends Model {
         setTable();
     }
 
-    private void setArgs()
-    {
-        this.args = new String[]{"name", "date", "description"};
-    }
-
     private void setTable()
     {
-        this.table = "events";
+        table = "events";
+    }
+    private void setArgs()
+    {
+        args = new String[]{"name", "date", "description"};
     }
 
 

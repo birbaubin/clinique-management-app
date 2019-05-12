@@ -3,6 +3,7 @@ package sample.DAO;
 import sample.Models.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserAccess {
 
@@ -18,12 +19,16 @@ public class UserAccess {
 
     public static void delete(int id)
     {
-        Access.delete("users", id);
+        Access.delete(new User().getTable(), id);
     }
 
 
     public static ArrayList getAll()
     {
-       return Access.getAll("users");
+       return Access.getAll(new User().getTable());
+    }
+
+    public static ArrayList search(HashMap<String, String> pattern){
+        return Access.search(pattern,new User().getTable());
     }
 }

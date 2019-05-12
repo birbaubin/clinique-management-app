@@ -10,13 +10,18 @@ public class Main {
     public static void main(String[] args) {
 
 
-        //NotificationAccess.delete(3);
-        //EventAccess.delete(3);
-        Cotisation cota = new Cotisation();
+        /*Cotisation cota = new Cotisation();
         cota.setAmount(1007);
         cota.setDescription("Payer un gamous");
         cota.setTimeLimit("2019-06-06");
-        CotisationAccess.store(cota);
+        CotisationAccess.store(cota);*/
+
+        HashMap<String, String > pattern  = new HashMap<>();
+        pattern.put("member_id", "18");
+        pattern.put("text", "Hello bro");
+        NotificationAccess.search(pattern);
+
+       // EventAccess.delete(2);
 
     }
 

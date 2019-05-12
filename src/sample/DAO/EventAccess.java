@@ -4,6 +4,7 @@ import sample.Models.Event;
 import sample.Models.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EventAccess{
 
@@ -19,13 +20,15 @@ public class EventAccess{
 
         public  static void delete(int id)
         {
-            Access.delete("events", id);
+            Access.delete(new Event().getTable(), id);
         }
 
 
         public static ArrayList getAll()
         {
-            return Access.getAll("events");
+            return Access.getAll(new Event().getTable());
         }
+
+    public static ArrayList search(HashMap<String, String> pattern){ return Access.search(pattern, new Event().getTable());}
     }
 

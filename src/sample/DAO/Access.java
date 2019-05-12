@@ -87,6 +87,7 @@ public class Access {
     public static void delete(String  model, int id)
     {
         request = "delete from "+model+" where id = "+id+";";
+        System.out.println(request);
         try{
             PreparedStatement st = con.prepareStatement(request);
             st.execute();
@@ -122,6 +123,44 @@ public class Access {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
             }
+        return result;
+    }
+
+    public static ArrayList search(HashMap<String, String> pattern, String model)
+    {
+        ArrayList result = new ArrayList();
+        request = "select * from "+model+" where ";
+        int counter = 0;
+        for(String key:pattern.keySet())
+        {
+            if(counter>0)
+                request+= " and "+key+" = '"+pattern.get(key)+"'";
+            else
+                request+= key+" = '"+pattern.get(key)+"'";
+            counter++;
+        }
+        System.out.println(request);
+
+        ResultSet resultset = null;
+
+        try {
+            Statement st = con.createStatement();
+            resultset = st.executeQuery(request);
+            ResultSetMetaData rsmd = resultset.getMetaData();
+            int columnNumber = resultset.getMetaData().getColumnCount();
+            while (resultset.next()) {
+
+                HashMap<String, String> row = new HashMap<String, String>();
+                for(int i = 1; i<=columnNumber; i++) {
+                    row.put(rsmd.getColumnName(i), resultset.getString(i));
+                }
+                result.add(row);
+            }
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
         return result;
     }
 
