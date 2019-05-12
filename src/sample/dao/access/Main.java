@@ -1,8 +1,5 @@
-package sample.DAO;
+package sample.dao.access;
 
-import sample.Models.*;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {

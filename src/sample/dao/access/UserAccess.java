@@ -1,6 +1,6 @@
-package sample.DAO;
+package sample.dao.access;
 
-import sample.Models.User;
+import sample.dao.models.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package sample.Models;
+package sample.dao.models;
 
 
 public class Event extends Model {

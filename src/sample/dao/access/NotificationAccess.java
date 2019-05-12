@@ -1,6 +1,6 @@
-package sample.DAO;
+package sample.dao.access;
 
-import sample.Models.Notification;
+import sample.dao.models.Notification;
 
 import java.util.ArrayList;
 import java.util.HashMap;

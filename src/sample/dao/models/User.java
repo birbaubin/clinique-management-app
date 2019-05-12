@@ -1,6 +1,6 @@
-package sample.Models;
+package sample.dao.models;
 
-import sample.DAO.Hash;
+import sample.dao.access.Hash;
 
 public class User extends Model {
 

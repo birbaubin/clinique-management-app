@@ -1,4 +1,4 @@
-package sample.DAO;
+package sample.dao.access;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

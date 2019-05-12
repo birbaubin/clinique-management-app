@@ -1,7 +1,7 @@
-package sample.DAO;
+package sample.dao.access;
 
-import sample.Models.Model;
-import sample.database.AppConnection;
+import sample.dao.models.Model;
+import sample.dao.database.AppConnection;
 
 import java.sql.*;
 import java.util.*;
