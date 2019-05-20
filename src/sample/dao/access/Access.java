@@ -139,7 +139,7 @@ public class Access {
                 request+= key+" = '"+pattern.get(key)+"'";
             counter++;
         }
-        System.out.println(request);
+        //System.out.println(request);
 
         ResultSet resultset = null;
 
@@ -156,7 +156,7 @@ public class Access {
                 }
                 result.add(row);
             }
-            System.out.println(result);
+            //System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
