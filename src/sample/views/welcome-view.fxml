@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.IndexController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.IndexController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #f2f9f9;">
+         <top>
+            <AnchorPane prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="86.0" layoutY="25.0" text="Bienvenue" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <VBox prefHeight="516.0" prefWidth="234.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="512.0" prefWidth="230.0">
+                     <children>
+                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Membres">
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/team-member.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Century Gothic" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="125.0" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Finances">
+                           <font>
+                              <Font name="Century Gothic" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/coins.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Evènements">
+                           <font>
+                              <Font name="Century Gothic" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <effect>
+                              <DropShadow color="#0000007b" spread="0.2" />
+                           </effect>
+                           <graphic>
+                              <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/advertising.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <ImageView fitHeight="150.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
 </AnchorPane>
