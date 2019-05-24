@@ -101,7 +101,7 @@ public class Access {
 
     public static ArrayList getAll(String model) {
 
-        ArrayList result = new ArrayList();
+        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
         request  = "select * from "+model+";";
         ResultSet resultset = null;
 

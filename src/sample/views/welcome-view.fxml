@@ -11,23 +11,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.IndexController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #f2f9f9;">
+      <BorderPane prefHeight="700.0" prefWidth="980.0">
          <top>
-            <AnchorPane prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="67.0" prefWidth="777.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="86.0" layoutY="25.0" text="Bienvenue" />
+                  <Label layoutX="61.0" layoutY="16.0" text="Accueil" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </top>
          <left>
-            <VBox prefHeight="516.0" prefWidth="234.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="589.0" prefWidth="234.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="512.0" prefWidth="230.0">
+                  <AnchorPane prefHeight="635.0" prefWidth="234.0" style="-fx-background-color: #e6fffa;">
                      <children>
-                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Membres">
+                        <JFXButton fx:id="members" alignment="CENTER" layoutX="23.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#membersButtonClicked" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #f2f7f7; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" wrapText="true">
                            <graphic>
                               <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -39,7 +42,7 @@
                               <Font name="Century Gothic" size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="125.0" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Finances">
+                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="125.0" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #f2f7f7; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Finances" wrapText="true">
                            <font>
                               <Font name="Century Gothic" size="18.0" />
                            </font>
@@ -51,7 +54,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: ffffff; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );;" text="Evènements">
+                        <JFXButton alignment="CENTER" layoutX="23.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #f2f7f7; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" wrapText="true">
                            <font>
                               <Font name="Century Gothic" size="18.0" />
                            </font>
@@ -75,7 +78,7 @@
             </VBox>
          </left>
          <center>
-            <ImageView fitHeight="150.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <VBox fx:id="container" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

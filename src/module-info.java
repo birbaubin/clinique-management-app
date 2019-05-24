@@ -5,6 +5,7 @@ module club.management.app {
     requires java.sql;
     requires com.jfoenix;
     exports sample.controllers;
+    exports sample.dao.models;
 
     opens sample;
 }

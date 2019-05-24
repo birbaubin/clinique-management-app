@@ -38,7 +38,7 @@
             </ImageView>
             <JFXPasswordField focusColor="#10eeee" layoutX="231.0" layoutY="347.0" prefHeight="26.0" prefWidth="219.0" promptText="Mot de passe" unFocusColor="#070707" />
             <JFXButton layoutX="341.0" layoutY="417.0" prefHeight="32.0" prefWidth="149.0" style="-fx-background-color: #1c8780;" text="Mot de passe oublié?" textFill="WHITE" />
-            <JFXButton layoutX="197.0" layoutY="417.0" onAction="#okClicked" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #1c8780;" text="OK" textFill="WHITE" />
+            <JFXButton fx:id="okButton" layoutX="197.0" layoutY="417.0" onAction="#okClicked" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #1c8780;" text="OK" textFill="WHITE" />
             <Separator layoutX="-5.0" layoutY="482.0" prefHeight="7.0" prefWidth="686.0" />
             <Label layoutX="227.0" layoutY="500.0" text="Copyright BirAz 2019. Tous droits réservés" textFill="#0000008b" />
          </children>

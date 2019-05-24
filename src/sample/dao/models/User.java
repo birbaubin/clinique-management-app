@@ -19,6 +19,16 @@ public class User extends Model {
     }
 
 
+    public User(String firstname, String lastname, String birthday, String cne, String email, String password, String level) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.cne = cne;
+        this.email = email;
+        this.password = password;
+        this.level = level;
+    }
+
     private void setArgs()
     {
         this.args = new String[]{"firstname", "lastname", "birthday", "cne", "email", "password", "level"};
