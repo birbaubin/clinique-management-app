@@ -4,8 +4,9 @@ module club.management.app {
     requires javafx.fxml;
     requires java.sql;
     requires com.jfoenix;
-    exports sample.controllers;
-    exports sample.dao.models;
+    exports controllers;
+    exports dao.models;
+    exports start;
 
-    opens sample;
+
 }
