@@ -33,7 +33,7 @@ public class UserAccess {
         for(HashMap user: allUsers) {
             users.add(new User((String) user.get("firstname"),
                     (String) (user.get("lastname")),
-                    (String) user.get("birthday"),
+                    (String) user.get("userType"),
                     (String) user.get("cne"),
                     (String) user.get("email"),
                     (String) user.get("password"),

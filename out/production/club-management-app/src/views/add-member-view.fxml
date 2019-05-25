@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <JFXTextField fx:id="addFirstname" layoutX="58.0" layoutY="66.0" prefHeight="25.0" prefWidth="195.0" promptText="Nom" />
+      <JFXTextField fx:id="addLastname" layoutX="58.0" layoutY="115.0" prefHeight="25.0" prefWidth="195.0" promptText="Prénom" />
+      <JFXTextField fx:id="addCne" layoutX="58.0" layoutY="166.0" prefHeight="25.0" prefWidth="195.0" promptText="CNE" />
+      <JFXTextField fx:id="addEmail" layoutX="58.0" layoutY="218.0" prefHeight="25.0" prefWidth="195.0" promptText="Email" />
+      <JFXTextField fx:id="addPassword" layoutX="58.0" layoutY="272.0" prefHeight="25.0" prefWidth="195.0" promptText="Mot de passe" />
+      <JFXTextField fx:id="confirmPassword" layoutX="58.0" layoutY="322.0" prefHeight="25.0" prefWidth="195.0" promptText="Confirmer mot de passe" />
+      <JFXTextField fx:id="addLevel" layoutX="60.0" layoutY="371.0" prefHeight="25.0" prefWidth="195.0" promptText="NIveau" />
+      <JFXButton fx:id="okButton" layoutX="52.0" layoutY="442.0" onAction="#okButtonClicked" prefHeight="38.0" prefWidth="48.0" style="-fx-background-color: #27baba;" text="OK" textFill="WHITE" />
+      <JFXButton layoutX="192.0" layoutY="442.0" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: #27baba;" text="Annuler" textFill="WHITE" />
+      <AnchorPane layoutX="-2.0" layoutY="-1.0" prefHeight="48.0" prefWidth="307.0" style="-fx-background-color: #27baba;">
+         <children>
+            <Label layoutX="107.0" layoutY="22.0" text="Ajouter un membre" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

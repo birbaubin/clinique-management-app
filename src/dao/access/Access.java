@@ -103,6 +103,10 @@ public class Access {
 
         ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
         request  = "select * from "+model+";";
+        if(model.equals("users"))
+        {
+            request = "select * from "+model+" where not userType = 'admin'";
+        }
         ResultSet resultset = null;
 
         try {

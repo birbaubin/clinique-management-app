@@ -17,7 +17,7 @@
          <top>
             <AnchorPane prefHeight="67.0" prefWidth="777.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="61.0" layoutY="16.0" text="Accueil" textFill="WHITE">
+                  <Label fx:id="headerLabel" layoutX="453.0" layoutY="19.0" text="Accueil" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -78,7 +78,18 @@
             </VBox>
          </left>
          <center>
-            <VBox fx:id="container" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="container" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <JFXButton fx:id="addElement" defaultButton="true" layoutX="690.0" layoutY="40.0" onAction="#addElementButtonClicked" style="-fx-background-color: #27baba;" text="+" textFill="WHITE" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
    </children>

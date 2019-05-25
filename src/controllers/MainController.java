@@ -1,23 +1,34 @@
 package controllers;
 
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import dao.access.UserAccess;
 import dao.models.User;
+import views.AddMemberAlertBox;
 
 public class MainController {
 
-public VBox container;
+public AnchorPane container;
 public Button members;
-public TextField add_firstname;
-public TextField add_lastname;
-public TextField add_birthday;
+public JFXButton addElement;
+//label on the top
+public Label headerLabel;
+public JFXTextField addFirstname;
+public JFXTextField addLastname;
+public JFXTextField addCne;
+public JFXTextField addEmail;
+public JFXTextField addPassword;
+public JFXTextField confirmPassword;
+public JFXTextField addLevel;
+public JFXButton okButton;
 
-public TextField add_email;
+public JFXDialog dialog;
 
 public TableView<User> table;
 
@@ -26,7 +37,6 @@ public TableView<User> table;
     {
         if(table==null)
         {
-
             table = new TableView<User>();
             TableColumn<User, String> firstname = new TableColumn<>("Prénom");
             firstname.setMinWidth(100);
@@ -36,14 +46,11 @@ public TableView<User> table;
             cne.setMinWidth(100);
             TableColumn<User, String> email = new TableColumn<>("email");
             email.setMinWidth(130);
-            TableColumn<User, String> birthday = new TableColumn<>("Date de naissance");
-            birthday.setMinWidth(130);
             TableColumn<User, String> level = new TableColumn<>("Niveau");
             level.setMinWidth(90);
 
             firstname.setCellValueFactory(new PropertyValueFactory("firstname"));
             lastname.setCellValueFactory(new PropertyValueFactory("lastname"));
-            birthday.setCellValueFactory(new PropertyValueFactory("birthday"));
             cne.setCellValueFactory(new PropertyValueFactory("cne"));
             email.setCellValueFactory(new PropertyValueFactory("email"));
             level.setCellValueFactory(new PropertyValueFactory("level"));
@@ -51,16 +58,37 @@ public TableView<User> table;
 
             ObservableList users = UserAccess.getAll();
             table.setItems(users);
-            table.getColumns().addAll(firstname, lastname, cne, email, level, birthday);
-
-
-            //add fields to add a new member
-
-            container.getChildren().add(table);
-            container.setPadding(new Insets(50, 50, 30, 50));
+            table.getColumns().addAll(firstname, lastname, cne, email, level);
+            addElement.setVisible(true);
+            container.getChildren().addAll(table);
+            AnchorPane.setTopAnchor(table, 10.0);
+            AnchorPane.setLeftAnchor(table, 10.0);
+            headerLabel.setText("Membres");
         }
 
 
     }
+
+    public void addElementButtonClicked()
+    {
+        if(headerLabel.getText().equals("Membres"))
+        {
+            System.out.println("Display in");
+            try{
+
+                AddMemberAlertBox box = new AddMemberAlertBox();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void okButtonClicked()
+    {
+        System.out.println("ok clicked");
+    }
+
 
 }

@@ -6,7 +6,7 @@ public class User extends Model {
 
     private String firstname;
     private  String lastname;
-    private String birthday;
+    private String userType;
     private String cne;
     private String email;
     private String password;
@@ -19,10 +19,10 @@ public class User extends Model {
     }
 
 
-    public User(String firstname, String lastname, String birthday, String cne, String email, String password, String level) {
+    public User(String firstname, String lastname, String userType, String cne, String email, String password, String level) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.birthday = birthday;
+        this.userType = userType;
         this.cne = cne;
         this.email = email;
         this.password = password;
@@ -31,7 +31,7 @@ public class User extends Model {
 
     private void setArgs()
     {
-        this.args = new String[]{"firstname", "lastname", "birthday", "cne", "email", "password", "level"};
+        this.args = new String[]{"firstname", "lastname", "userType", "cne", "email", "password", "level"};
     }
 
     private void setTable()
@@ -44,7 +44,7 @@ public class User extends Model {
     }
 
     public String getBirthday() {
-        return birthday;
+        return userType;
     }
 
     public String getLastname() {
@@ -55,8 +55,8 @@ public class User extends Model {
         this.lastname = lastname;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setUserType(String birthday) {
+        this.userType = userType;
     }
 
     public String getCne() {
@@ -97,7 +97,7 @@ public class User extends Model {
 
     public String[] getAttributes()
     {
-        String[] result = new String[]{firstname, lastname, birthday, cne, email, Hash.getSecurePassword(password), level};
+        String[] result = new String[]{firstname, lastname, userType, cne, email, Hash.getSecurePassword(password), level};
         return result;
     }
 

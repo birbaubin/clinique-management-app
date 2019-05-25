@@ -72,7 +72,7 @@ public class UserController {
             HashMap<String, String> user = (HashMap)(users.get(0));
             foundUser = new User();
             foundUser.setFirstname(user.get("firstname"));
-            foundUser.setBirthday(user.get("birthday"));
+            foundUser.setUserType(user.get("userType"));
             foundUser.setLastname(user.get("lastname"));
             foundUser.setLevel(user.get("level"));
             foundUser.setEmail(user.get("email"));
