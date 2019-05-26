@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MembersController  implements Initializable{
+public class MembersController extends Controller implements Initializable{
 
 public AnchorPane container;
 public Button members;
@@ -106,7 +107,8 @@ public ObservableList users;
         Validator.validateForAddUser(user);
 
         UserAccess.store(user);
-        table.getItems().add(user);
+        refreshTable();
+        showDialog("Ajout", "L'utilisateur a été ajouté avec succès");
 
     }
 
@@ -125,7 +127,23 @@ public ObservableList users;
 
     public void updateMemberButtonClicked()
     {
-        
+
+    }
+
+    public void deleteMemberButtonClicked()
+    {
+        ObservableList  allMembers;
+
+        allMembers = table.getItems();
+        User selectedMember = table.getSelectionModel().getSelectedItem();
+        UserAccess.delete(selectedMember.getId());
+        refreshTable();
+    }
+
+    public void refreshTable()
+    {
+        ObservableList users = UserAccess.getAll();
+        table.setItems(users);
     }
 
 

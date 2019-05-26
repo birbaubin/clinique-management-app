@@ -31,7 +31,8 @@ public class UserAccess {
         ArrayList<HashMap<String, String>> allUsers = Access.getAll(new User().getTable());
         ObservableList users = FXCollections.observableArrayList();
         for(HashMap user: allUsers) {
-            users.add(new User((String) user.get("firstname"),
+            users.add(new User(Integer.parseInt((String)user.get("id")),
+                    (String) user.get("firstname"),
                     (String) (user.get("lastname")),
                     (String) user.get("userType"),
                     (String) user.get("cne"),

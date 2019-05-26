@@ -1,6 +1,8 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import dao.access.UserAccess;
 import dao.models.User;
@@ -9,66 +11,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 public class Controller {
 
-
-    public AnchorPane container;
-    public Button members;
-    public JFXButton addMemberButton;
-    public JFXButton updateMemberButton;
-    public JFXButton deleteMemberButton;
-    //label on the top
-    public Label headerLabel;
-    public JFXTextField addFirstname;
-    public JFXTextField addLastname;
-    public JFXTextField addCne;
-    public JFXTextField addEmail;
-    public JFXTextField addPassword;
-    public JFXTextField confirmPassword;
-    public JFXTextField addLevel;
-    public JFXButton okButton;
-    public TableView<User> table;
-    public ObservableList users;
-    public void addMemberButtonClicked()
+    public void showDialog(String heading, String body)
     {
-        System.out.println("You are here");
-        addFirstname.setVisible(true);
-        addLastname.setVisible(true);
-        addLevel.setVisible(true);
-        addCne.setVisible(true);
-        addEmail.setVisible(true);
-        addPassword.setVisible(true);
-        confirmPassword.setVisible(true);
+        StackPane stackPane = new StackPane();
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text(heading));
+        content.setBody(new Text(body));
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        JFXButton ok = new JFXButton();
+        content.setActions(ok);
+        ok.setOnAction(Event ->{
+            dialog.close();
+        });
 
-    }
-
-    public void showManageMembersButtons()
-    {
-        addMemberButton.setVisible(true);
-        updateMemberButton.setVisible(true);
-        deleteMemberButton.setVisible((true));
-    }
-
-    public void okButtonClicked() throws  Exception
-    {
-        System.out.println("Hello");
-        String firstname = addFirstname.getText();
-        String lastname = addLastname.getText();
-        String email = addEmail.getText();
-        String cne = addCne.getText();
-        String password = addPassword.getText();
-        String secondPassword = confirmPassword.getText();
-        String level = addLevel.getText();
-
-        System.out.println("firstname: "+firstname+" lastname: "+lastname);
-        User user = new User(firstname, lastname, "user", cne, email, password, level);
-        Validator.validateForAddUser(user);
-
-        UserAccess.store(user);
-        table.getItems().add(user);
-
-
+        dialog.show();
 
     }
 }

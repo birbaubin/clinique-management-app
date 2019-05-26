@@ -4,6 +4,7 @@ import dao.access.Hash;
 
 public class User extends Model {
 
+    private int id;
     private String firstname;
     private  String lastname;
     private String userType;
@@ -29,9 +30,27 @@ public class User extends Model {
         this.email = email;
         this.password = password;
         this.level = level;
+        this.id = 0;
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public User(int id, String firstname, String lastname, String userType, String cne, String email, String password, String level) {
+
+        this();
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.userType = userType;
+        this.cne = cne;
+        this.email = email;
+        this.password = password;
+        this.level = level;
+        this.id = id;
+
+    }
     private void setArgs()
     {
         this.args = new String[]{"firstname", "lastname", "userType", "cne", "email", "password", "level"};
