@@ -20,6 +20,8 @@ public class User extends Model {
 
 
     public User(String firstname, String lastname, String userType, String cne, String email, String password, String level) {
+
+        this();
         this.firstname = firstname;
         this.lastname = lastname;
         this.userType = userType;
@@ -27,6 +29,7 @@ public class User extends Model {
         this.email = email;
         this.password = password;
         this.level = level;
+
     }
 
     private void setArgs()

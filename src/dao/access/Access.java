@@ -19,6 +19,7 @@ public class Access {
 
         //loop through the args and add them to the request
 
+        System.out.println(model.getArgs());
         int nbreArgs = model.getArgs().length;
         for(int i = 0; i<nbreArgs-1; i++)
         {
