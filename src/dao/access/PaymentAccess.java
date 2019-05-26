@@ -14,7 +14,7 @@ public class PaymentAccess  {
 
     public static void update(Payment payment, int id){
 
-        Access.update(payment, id);
+        Access.update(payment);
     }
 
     public  static void delete(int id)

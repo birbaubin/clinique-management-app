@@ -4,6 +4,7 @@ public abstract  class Model {
 
     protected String table;
     protected String[] args;
+    protected int id;
 
     public String[] getArgs()
     {
@@ -12,6 +13,11 @@ public abstract  class Model {
 
     public String getTable() {
         return table;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public abstract Object[] getAttributes();

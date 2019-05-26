@@ -14,9 +14,9 @@ public class UserAccess {
         Access.store(user);
     }
 
-    public static void update(User user, int id){
+    public static void update(User user){
 
-        Access.update(user, id);
+        Access.update(user);
     }
 
     public static void delete(int id)

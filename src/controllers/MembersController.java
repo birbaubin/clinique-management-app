@@ -12,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import dao.access.UserAccess;
 import dao.models.User;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import views.AddMemberAlertBox;
 import views.ConfirmationBox;
 
@@ -22,6 +24,7 @@ import java.util.ResourceBundle;
 public class MembersController extends Controller implements Initializable{
 
 public AnchorPane container;
+public StackPane root;
 public Button members;
 public JFXButton addMemberButton;
 public JFXButton updateMemberButton;
@@ -71,7 +74,7 @@ public ObservableList users;
             table.getColumns().addAll(firstname, lastname, cne, email, level);
             container.getChildren().addAll(table);
             AnchorPane.setTopAnchor(table, 10.0);
-            AnchorPane.setLeftAnchor(table, 90.0);
+            AnchorPane.setLeftAnchor(table, 70.0);
             headerLabel.setText("Membres");
         }
 
@@ -79,7 +82,6 @@ public ObservableList users;
 
     public void showAddMembersFields()
     {
-
         addFirstname.setVisible(true);
         addLastname.setVisible(true);
         addCne.setVisible((true));
@@ -89,26 +91,70 @@ public ObservableList users;
         addLevel.setVisible((true));
         okButton.setVisible(true);
         cancelButton.setVisible(true);
+        headerLabel.setText("Ajouter un membre");
+    }
+
+    public void showUpdateMembersFields()
+    {
+
+        addFirstname.setVisible(true);
+        addLastname.setVisible(true);
+        addCne.setVisible((true));
+        addEmail.setVisible((true));
+        addLevel.setVisible((true));
+        okButton.setVisible(true);
+        cancelButton.setVisible(true);
+        addPassword.setVisible(true);
+        confirmPassword.setVisible(true);
     }
 
     public void okButtonClicked() throws  Exception
     {
-        System.out.println("Hello");
-        String firstname = addFirstname.getText();
-        String lastname = addLastname.getText();
-        String email = addEmail.getText();
-        String cne = addCne.getText();
-        String password = addPassword.getText();
-        String secondPassword = confirmPassword.getText();
-        String level = addLevel.getText();
+        if(headerLabel.getText().equals("Ajouter un membre"))
+        {
+            System.out.println("Hello");
+            String firstname = addFirstname.getText();
+            String lastname = addLastname.getText();
+            String email = addEmail.getText();
+            String cne = addCne.getText();
+            String password = addPassword.getText();
+            String secondPassword = confirmPassword.getText();
+            String level = addLevel.getText();
 
-        System.out.println("firstname: "+firstname+" lastname: "+lastname);
-        User user = new User(firstname, lastname, "user", cne, email, password, level);
-        Validator.validateForAddUser(user);
+            System.out.println("firstname: "+firstname+" lastname: "+lastname);
+            User user = new User(firstname, lastname, "user", cne, email, password, level);
+            Validator.validateForAddUser(user);
 
-        UserAccess.store(user);
-        refreshTable();
-        showDialog("Ajout", "L'utilisateur a été ajouté avec succès");
+            UserAccess.store(user);
+            refreshTable();
+            StackPane pane = new StackPane();
+            root.getChildren().add(pane);
+            showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+        }
+
+        if(headerLabel.getText().equals(("Modifier les informations d'un membre")))
+        {
+            String firstname = addFirstname.getText();
+            String lastname = addLastname.getText();
+            String email = addEmail.getText();
+            String cne = addCne.getText();
+            String level = addLevel.getText();
+            String pass = addPassword.getText();
+            String confirpass = confirmPassword.getText();
+            User user = table.getSelectionModel().getSelectedItem();
+            user.setFirstname(firstname);
+            user.setLastname((lastname));
+            user.setEmail(email);
+            user.setPassword(pass);
+            user.setCne(cne);
+            user.setLevel(level);
+            UserAccess.update(user);
+            refreshTable();
+            cancelButtonClicked();
+            //showDialog("Ajout", "L'utilisateur a été ajouté avec succès");
+
+        }
+
 
     }
 
@@ -123,10 +169,23 @@ public ObservableList users;
         addLevel.setVisible((false));
         okButton.setVisible(false);
         cancelButton.setVisible(false);
+        headerLabel.setText("Membres");
     }
 
-    public void updateMemberButtonClicked()
+
+    public void updateMemberButtonClicked() throws Exception
     {
+
+            User selectedMember = table.getSelectionModel().getSelectedItem();
+            if(selectedMember==null)
+                showDialog("Modification", "Veuillez sélectionner un membre pour modifier ses informations", root);
+            showUpdateMembersFields();
+            addFirstname.setPromptText(selectedMember.getFirstname());
+            addLastname.setPromptText(selectedMember.getLastname());
+            addCne.setPromptText(selectedMember.getCne());
+            addEmail.setPromptText(selectedMember.getEmail());
+            addLevel.setPromptText(selectedMember.getLevel());
+            headerLabel.setText("Modifier les informations d'un membre");
 
     }
 
@@ -145,6 +204,8 @@ public ObservableList users;
         ObservableList users = UserAccess.getAll();
         table.setItems(users);
     }
+
+
 
 
 }

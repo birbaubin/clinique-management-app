@@ -14,7 +14,7 @@ public class EventAccess{
 
         public static void update(Event event, int id){
 
-            Access.update(event, id);
+            Access.update(event);
         }
 
         public  static void delete(int id)

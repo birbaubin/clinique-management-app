@@ -14,7 +14,7 @@ public class NotificationAccess {
 
     public static void update(Notification notif, int id){
 
-        Access.update(notif, id);
+        Access.update(notif);
     }
 
     public  static void delete(int id)

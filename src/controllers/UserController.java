@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class UserController {
 
-    public static void addUser(User user)
+    /*public static void addUser(User user)
     {
         try{
             Validator.validateForAddUser(user);
@@ -85,6 +85,6 @@ public class UserController {
         }
         return foundUser;
     }
-
+*/
 
 }

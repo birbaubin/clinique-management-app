@@ -58,7 +58,7 @@ public class Access {
         }
     }
 
-    public static void update(Model model, int id)
+    public static void update(Model model)
     {
             request = "update "+model.getTable()+" set ";
 
@@ -69,7 +69,7 @@ public class Access {
 
                 request+=model.getArgs()[i]+" = '"+model.getAttributes()[i]+"', ";
             }
-            request+=model.getArgs()[nbreArgs-1]+" = '"+model.getAttributes()[nbreArgs-1]+"' where id = "+id+";";
+            request+=model.getArgs()[nbreArgs-1]+" = '"+model.getAttributes()[nbreArgs-1]+"' where id = "+model.getId()+";";
            System.out.println(request);
         //" where id = "+id+";"
             try{

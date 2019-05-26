@@ -16,15 +16,15 @@ import javafx.scene.text.Text;
 
 public class Controller {
 
-    public void showDialog(String heading, String body)
+    public void showDialog(String heading, String body, StackPane pane)
     {
-        StackPane stackPane = new StackPane();
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text(heading));
         content.setBody(new Text(body));
-        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
         JFXButton ok = new JFXButton();
         content.setActions(ok);
+        pane.getChildren().add(ok);
         ok.setOnAction(Event ->{
             dialog.close();
         });

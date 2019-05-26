@@ -15,7 +15,7 @@ public class CotisationAccess  {
 
     public static void update(Cotisation cotisation, int id){
 
-        Access.update(cotisation, id);
+        Access.update(cotisation);
     }
 
     public  static void delete(int id)

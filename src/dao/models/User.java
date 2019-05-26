@@ -4,7 +4,6 @@ import dao.access.Hash;
 
 public class User extends Model {
 
-    private int id;
     private String firstname;
     private  String lastname;
     private String userType;
@@ -17,6 +16,7 @@ public class User extends Model {
     public User(){
         this.setArgs();
         this.setTable();
+        this.id = 0;
     }
 
 
