@@ -30,14 +30,28 @@ public class AuthController extends Controller{
 
     public void okClicked(ActionEvent event) throws IOException
     {
-        String username = email.getText();
+        /*String username = email.getText();
         String pass = password.getText();
         if(username.equals("") || pass.equals(""))
             showAuthLabel("Veuillez remplir tous les champs", authUsername);
         else
         {
             checkAuthentication(username, pass, event);
+        }*/
+
+        try{
+
+            URL url = new File("src/views/members-view.fxml").toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root, 980, 700));
+            window.show();
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
     }
 

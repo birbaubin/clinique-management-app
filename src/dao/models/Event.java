@@ -11,6 +11,14 @@ public class Event extends Model {
     {
         setArgs();
         setTable();
+        this.id = 0;
+    }
+
+    public Event(int id, String name, String date, String description) {
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.id = id;
     }
 
     private void setTable()
@@ -22,6 +30,11 @@ public class Event extends Model {
         args = new String[]{"name", "date", "description"};
     }
 
+    public Event(String name, String date, String description) {
+        this.name = name;
+        this.date = date;
+        this.description = description;
+    }
 
     public String getDate()
     {

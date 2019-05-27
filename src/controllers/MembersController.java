@@ -5,18 +5,21 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import dao.access.UserAccess;
 import dao.models.User;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import views.AddMemberAlertBox;
-import views.ConfirmationBox;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,10 +28,12 @@ public class MembersController extends Controller implements Initializable{
 
 public AnchorPane container;
 public StackPane root;
-public Button members;
 public JFXButton addMemberButton;
 public JFXButton updateMemberButton;
 public JFXButton deleteMemberButton;
+public JFXButton membersViewButton;
+public JFXButton cotisationsViewButton;
+public JFXButton eventsViewButton;
 //label on the top
 public Label headerLabel;
 public JFXTextField addFirstname;
@@ -52,13 +57,13 @@ public ObservableList users;
         {
             table = new TableView<User>();
             TableColumn<User, String> firstname = new TableColumn<>("Prénom");
-            firstname.setMinWidth(150);
+            firstname.setMinWidth(130);
             TableColumn<User, String> lastname = new TableColumn<>("Nom");
-            lastname.setMinWidth(150);
+            lastname.setMinWidth(130);
             TableColumn<User, String> cne = new TableColumn<>("Cne");
-            cne.setMinWidth(150);
+            cne.setMinWidth(130);
             TableColumn<User, String> email = new TableColumn<>("email");
-            email.setMinWidth(180);
+            email.setMinWidth(170);
             TableColumn<User, String> level = new TableColumn<>("Niveau");
             level.setMinWidth(130);
 
@@ -73,8 +78,8 @@ public ObservableList users;
             table.setItems(users);
             table.getColumns().addAll(firstname, lastname, cne, email, level);
             container.getChildren().addAll(table);
-            AnchorPane.setTopAnchor(table, 10.0);
-            AnchorPane.setLeftAnchor(table, 70.0);
+            AnchorPane.setTopAnchor(table, 40.0);
+            AnchorPane.setLeftAnchor(table, 40.0);
             headerLabel.setText("Membres");
         }
 
@@ -205,6 +210,38 @@ public ObservableList users;
         table.setItems(users);
     }
 
+    public void loadCotisationsView(ActionEvent event)
+    {
+
+        try{
+            URL url = new File("src/views/cotisations-view.fxml").toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root, 980, 700));
+            window.show();
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
+    public void loadEventsView(ActionEvent event)
+    {
+        System.out.println("you vant to see events");
+
+        try{
+            URL url = new File("src/views/events-view.fxml").toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root, 980, 700));
+            window.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 
