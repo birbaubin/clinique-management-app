@@ -1,5 +1,6 @@
 module club.management.app {
 
+    opens controllers;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

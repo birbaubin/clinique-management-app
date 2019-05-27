@@ -79,7 +79,7 @@
                <left>
                   <AnchorPane prefHeight="516.0" prefWidth="127.0" BorderPane.alignment="CENTER">
                      <children>
-                        <JFXButton fx:id="membersViewButton" layoutX="28.0" layoutY="100.0" onAction="#showAddMembersFields" style="-fx-background-color: #27baba;" text="Membres" textFill="WHITE">
+                        <JFXButton fx:id="membersViewButton" layoutX="28.0" layoutY="100.0" style="-fx-background-color: #27baba;" text="Membres" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>

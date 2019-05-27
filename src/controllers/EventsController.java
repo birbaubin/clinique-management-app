@@ -1,10 +1,7 @@
 package controllers;
 
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import dao.access.EventAccess;
 import dao.models.Event;
 import javafx.collections.ObservableList;
@@ -19,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import dao.access.UserAccess;
 import dao.models.User;
+import java.sql.Date;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -41,7 +39,7 @@ public class EventsController extends Controller implements Initializable{
     public Label headerLabel;
     public JFXTextField addName;
     public JFXTextArea addDescription;
-    public JFXTextField addDate;
+    public DatePicker addDate;
 
     public JFXButton okButton;
     public JFXButton cancelButton;
@@ -57,11 +55,11 @@ public class EventsController extends Controller implements Initializable{
         {
             table = new TableView<Event>();
             TableColumn<Event, String> name = new TableColumn<>("Nom de l'évènement");
-            name.setMinWidth(130);
+            name.setMinWidth(150);
             TableColumn<Event, String> description = new TableColumn<>("Description");
-            description.setMinWidth(130);
+            description.setMinWidth(230);
             TableColumn<Event, String> date = new TableColumn<>("Date");
-            date.setMinWidth(130);
+            date.setMinWidth(150);
 
 
             name.setCellValueFactory(new PropertyValueFactory("name"));
@@ -69,14 +67,15 @@ public class EventsController extends Controller implements Initializable{
             description.setCellValueFactory(new PropertyValueFactory("description"));
 
 
-
             events = EventAccess.getAll();
             table.setItems(events);
             table.getColumns().addAll(name, description, date);
             container.getChildren().addAll(table);
             AnchorPane.setTopAnchor(table, 40.0);
-            AnchorPane.setLeftAnchor(table, 40.0);
+            AnchorPane.setLeftAnchor(table, 100.0);
+
             headerLabel.setText("Evènements");
+           // headerLabel.setVisible(true);
         }
 
     }
@@ -89,25 +88,36 @@ public class EventsController extends Controller implements Initializable{
         okButton.setVisible(true);
         cancelButton.setVisible(true);
         headerLabel.setText("Ajouter un évènement");
+        headerLabel.setVisible(true);
     }
 
     public void updateEventButtonClicked()
     {
+        Event selectedEvent = table.getSelectionModel().getSelectedItem();
+        if(selectedEvent==null)
+            showDialog("Modification d'un évènement", "Veuillez selectionner un évènement pour le modifier", root);
+        else
+        {
+            addDescription.setVisible(true);
+            addDate.setVisible((true));
+            addName.setVisible(true);
+            okButton.setVisible(true);
+            cancelButton.setVisible(true);
+            headerLabel.setText("Modifier un évènement");
 
-        addName.setVisible(true);
-        addDescription.setVisible(true);
-        addDate.setVisible((true));
-        okButton.setVisible(true);
-        cancelButton.setVisible(true);
+        }
+
     }
 
     public void okButtonClicked() throws Exception
     {
+        System.out.println("You are here");
+        System.out.println("Value of input:" + headerLabel.getText());
         if(headerLabel.getText().equals("Ajouter un évènement"))
         {
             System.out.println("Hello");
             String name = addName.getText();
-            String date = addDate.getText();
+            String date = String.valueOf(Date.valueOf(addDate.getValue()));
             String description = addDescription.getText();
 
 
@@ -119,13 +129,15 @@ public class EventsController extends Controller implements Initializable{
             StackPane pane = new StackPane();
             root.getChildren().add(pane);
             showDialog("Ajout", "L'évènement a été ajouté avec succès", pane);
+            hideAddFields();
+            System.out.println(date);
         }
 
-        if(headerLabel.getText().equals(("Modifier les informations d'un évènement")))
+       if(headerLabel.getText().equals(("Modifier un évènement")))
         {
             String name = addName.getText();
             String description = addDescription.getText();
-            String date = addDate.getText();
+            String date = String.valueOf(Date.valueOf(addDate.getValue()));
             Event event = table.getSelectionModel().getSelectedItem();
             event.setDate(date);
             event.setDescription(description);
@@ -133,15 +145,15 @@ public class EventsController extends Controller implements Initializable{
             Validator.validateForAddEvent(event);
             EventAccess.update(event);
             refreshTable();
-            cancelButtonClicked();
-            //showDialog("Ajout", "L'utilisateur a été ajouté avec succès");
+            hideAddFields();
+            showDialog("Mise à jour", "Les informations ont été modifiées avec succès", root);
 
         }
 
 
     }
 
-    public void cancelButtonClicked()
+    public void hideAddFields()
     {
         addDate.setVisible(false);
         addDescription.setVisible(false);
@@ -155,8 +167,14 @@ public class EventsController extends Controller implements Initializable{
     public void deleteEventButtonClicked()
     {
         Event selectedEvent = table.getSelectionModel().getSelectedItem();
-        EventAccess.delete(selectedEvent.getId());
-        refreshTable();
+        if(selectedEvent==null)
+            showDialog("Suppression d'un évènement", "Veuillez selectionner un évènement pour le supprimer", root);
+        else
+        {
+            EventAccess.delete(selectedEvent.getId());
+            refreshTable();
+        }
+
     }
 
     public void refreshTable()
@@ -193,7 +211,7 @@ public class EventsController extends Controller implements Initializable{
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 

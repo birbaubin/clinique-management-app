@@ -113,7 +113,7 @@ public ObservableList users;
         confirmPassword.setVisible(true);
     }
 
-    public void okButtonClicked() throws  Exception
+    public void okButtonClicked()
     {
         if(headerLabel.getText().equals("Ajouter un membre"))
         {
@@ -128,13 +128,21 @@ public ObservableList users;
 
             System.out.println("firstname: "+firstname+" lastname: "+lastname);
             User user = new User(firstname, lastname, "user", cne, email, password, level);
-            Validator.validateForAddUser(user);
+            try{
+                Validator.validateForAddUser(user);
+                UserAccess.store(user);
+                refreshTable();
+                StackPane pane = new StackPane();
+                root.getChildren().add(pane);
+                showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+            }
+            catch (Exception e)
+            {
+                showDialog("Ajout d'un memebre", e.getMessage(), root);
+            }
 
-            UserAccess.store(user);
-            refreshTable();
-            StackPane pane = new StackPane();
-            root.getChildren().add(pane);
-            showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+
+
         }
 
         if(headerLabel.getText().equals(("Modifier les informations d'un membre")))
@@ -184,24 +192,29 @@ public ObservableList users;
             User selectedMember = table.getSelectionModel().getSelectedItem();
             if(selectedMember==null)
                 showDialog("Modification", "Veuillez sélectionner un membre pour modifier ses informations", root);
-            showUpdateMembersFields();
-            addFirstname.setPromptText(selectedMember.getFirstname());
-            addLastname.setPromptText(selectedMember.getLastname());
-            addCne.setPromptText(selectedMember.getCne());
-            addEmail.setPromptText(selectedMember.getEmail());
-            addLevel.setPromptText(selectedMember.getLevel());
-            headerLabel.setText("Modifier les informations d'un membre");
+            else{
+                showUpdateMembersFields();
+                addFirstname.setPromptText(selectedMember.getFirstname());
+                addLastname.setPromptText(selectedMember.getLastname());
+                addCne.setPromptText(selectedMember.getCne());
+                addEmail.setPromptText(selectedMember.getEmail());
+                addLevel.setPromptText(selectedMember.getLevel());
+                headerLabel.setText("Modifier les informations d'un membre");
+            }
 
     }
 
     public void deleteMemberButtonClicked()
     {
-        ObservableList  allMembers;
-
-        allMembers = table.getItems();
         User selectedMember = table.getSelectionModel().getSelectedItem();
-        UserAccess.delete(selectedMember.getId());
-        refreshTable();
+        if(selectedMember==null)
+            showDialog("Suppression d'un membre", "Veuillez selectionner un membre pour le supprimer", root);
+        else
+        {
+            UserAccess.delete(selectedMember.getId());
+            refreshTable();
+        }
+
     }
 
     public void refreshTable()

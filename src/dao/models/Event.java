@@ -34,6 +34,8 @@ public class Event extends Model {
         this.name = name;
         this.date = date;
         this.description = description;
+        setArgs();
+        setTable();
     }
 
     public String getDate()
