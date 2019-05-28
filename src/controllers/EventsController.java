@@ -103,6 +103,9 @@ public class EventsController extends Controller implements Initializable{
             addName.setVisible(true);
             okButton.setVisible(true);
             cancelButton.setVisible(true);
+            addName.setPromptText(selectedEvent.getName());
+            addDate.setPromptText(selectedEvent.getDate());
+            addDescription.setPromptText(selectedEvent.getDescription());
             headerLabel.setText("Modifier un évènement");
 
         }

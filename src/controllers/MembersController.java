@@ -57,15 +57,15 @@ public ObservableList users;
         {
             table = new TableView<User>();
             TableColumn<User, String> firstname = new TableColumn<>("Prénom");
-            firstname.setMinWidth(130);
+            firstname.setMinWidth(120);
             TableColumn<User, String> lastname = new TableColumn<>("Nom");
-            lastname.setMinWidth(130);
+            lastname.setMinWidth(120);
             TableColumn<User, String> cne = new TableColumn<>("Cne");
-            cne.setMinWidth(130);
+            cne.setMinWidth(120);
             TableColumn<User, String> email = new TableColumn<>("email");
-            email.setMinWidth(170);
+            email.setMinWidth(150);
             TableColumn<User, String> level = new TableColumn<>("Niveau");
-            level.setMinWidth(130);
+            level.setMinWidth(90);
 
             firstname.setCellValueFactory(new PropertyValueFactory("firstname"));
             lastname.setCellValueFactory(new PropertyValueFactory("lastname"));
@@ -77,6 +77,7 @@ public ObservableList users;
             users = UserAccess.getAll();
             table.setItems(users);
             table.getColumns().addAll(firstname, lastname, cne, email, level);
+            table.setEditable(true);
             container.getChildren().addAll(table);
             AnchorPane.setTopAnchor(table, 40.0);
             AnchorPane.setLeftAnchor(table, 40.0);
@@ -127,19 +128,25 @@ public ObservableList users;
             String level = addLevel.getText();
 
             System.out.println("firstname: "+firstname+" lastname: "+lastname);
-            User user = new User(firstname, lastname, "user", cne, email, password, level);
-            try{
-                Validator.validateForAddUser(user);
-                UserAccess.store(user);
-                refreshTable();
-                StackPane pane = new StackPane();
-                root.getChildren().add(pane);
-                showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+            if(!password.equals(secondPassword))
+                showDialog("Ajout d'un membre", "Les deux mots de passe ne correspondent pas", root);
+            else{
+                User user = new User(firstname, lastname, "user", cne, email, password, level);
+                try{
+                    Validator.validateForAddUser(user);
+                    UserAccess.store(user);
+                    refreshTable();
+                    StackPane pane = new StackPane();
+                    root.getChildren().add(pane);
+                    showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+                    cancelButtonClicked();
+                }
+                catch (Exception e)
+                {
+                    showDialog("Ajout d'un memebre", e.getMessage(), root);
+                }
             }
-            catch (Exception e)
-            {
-                showDialog("Ajout d'un memebre", e.getMessage(), root);
-            }
+
 
 
 
@@ -154,20 +161,30 @@ public ObservableList users;
             String level = addLevel.getText();
             String pass = addPassword.getText();
             String confirpass = confirmPassword.getText();
-            User user = table.getSelectionModel().getSelectedItem();
-            user.setFirstname(firstname);
-            user.setLastname((lastname));
-            user.setEmail(email);
-            user.setPassword(pass);
-            user.setCne(cne);
-            user.setLevel(level);
-            UserAccess.update(user);
-            refreshTable();
-            cancelButtonClicked();
-            //showDialog("Ajout", "L'utilisateur a été ajouté avec succès");
+            if(!pass.equals(confirpass))
+                showDialog("Ajout d'un membre", "Les deux mots de passe ne correspondent pas", root);
+            else{
+                User user = table.getSelectionModel().getSelectedItem();
+                user.setFirstname(firstname);
+                user.setLastname((lastname));
+                user.setEmail(email);
+                user.setPassword(pass);
+                user.setCne(cne);
+                user.setLevel(level);
+                try{
+                    Validator.validateForAddUser(user);
+                    UserAccess.update(user);
+                    refreshTable();
+                    cancelButtonClicked();
+                    showDialog("Ajout", "Les informations ont été modifiées avec succès", root);
+                }
+                catch (Exception e){
+                    showDialog("Modification des informations d'un membre", e.getMessage(), root);
+                }
+
+            }
 
         }
-
 
     }
 

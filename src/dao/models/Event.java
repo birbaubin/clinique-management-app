@@ -19,6 +19,8 @@ public class Event extends Model {
         this.date = date;
         this.description = description;
         this.id = id;
+        setTable();
+        setArgs();
     }
 
     private void setTable()
