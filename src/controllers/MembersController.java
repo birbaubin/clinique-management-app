@@ -243,7 +243,7 @@ public ObservableList users;
 
     public void loadCotisationsView(ActionEvent event)
     {
-
+        System.out.println("you vant to see cotisations");
         try{
             URL url = new File("src/views/cotisations-view.fxml").toURL();
             Parent root = FXMLLoader.load(url);
@@ -253,7 +253,7 @@ public ObservableList users;
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 

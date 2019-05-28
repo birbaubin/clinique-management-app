@@ -20,6 +20,23 @@ public class Cotisation extends Model{
         setArgs();
     }
 
+    public Cotisation(double amount, String description, String timeLimit) {
+        this.amount = amount;
+        this.description = description;
+        this.timeLimit = timeLimit;
+        setTable();
+        setArgs();
+    }
+
+    public Cotisation(int id, double amount, String description, String timeLimit) {
+        this.amount = amount;
+        this.description = description;
+        this.timeLimit = timeLimit;
+        setTable();
+        setArgs();
+        this.id = id;
+    }
+
     public double getAmount() {
         return amount;
     }

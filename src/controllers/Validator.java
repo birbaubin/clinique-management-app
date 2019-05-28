@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.models.Cotisation;
 import dao.models.Event;
 import dao.models.User;
 
@@ -35,6 +36,15 @@ public class Validator {
 
         if (event.getDescription().equals(""))
             throw new Exception("Veuillez entrer une description");
+    }
+
+    public static void validateForAddCotisation(Cotisation cotisation) throws Exception
+    {
+        if(cotisation.getDescription().equals(""))
+            throw new Exception("Veuillez entrer une description");
+
+        if(cotisation.getTimeLimit().equals(""))
+            throw new Exception("Veuillez entrer une date");
     }
 
 
