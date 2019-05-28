@@ -1,6 +1,6 @@
 package dao.models;
 
-public abstract  class Model {
+public abstract  class Model extends  Object{
 
     protected String table;
     protected String[] args;

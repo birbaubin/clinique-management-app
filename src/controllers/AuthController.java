@@ -25,33 +25,21 @@ public class AuthController extends Controller{
     public Label authUsername, authPassword;
     public JFXTextField email;
     public JFXPasswordField password;
+    public static User connectedUser;
 
     public JFXButton okButton;
 
     public void okClicked(ActionEvent event) throws IOException
     {
-        /*String username = email.getText();
+        String username = email.getText();
         String pass = password.getText();
         if(username.equals("") || pass.equals(""))
             showAuthLabel("Veuillez remplir tous les champs", authUsername);
         else
         {
+
             checkAuthentication(username, pass, event);
-        }*/
-
-        try{
-
-            URL url = new File("src/views/members-view.fxml").toURL();
-            Parent root = FXMLLoader.load(url);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(new Scene(root, 980, 700));
-            window.show();
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -67,23 +55,50 @@ public class AuthController extends Controller{
         else
         {
             if(!(result.get(0).get("password")).equals(Hash.getSecurePassword(password)))
-                showAuthLabel("Mot de passe inexistant", authPassword);
+                showAuthLabel("Mot de passe incorrect", authPassword);
             else
             {
-                System.out.println("Welcoooooooooome");
-                try{
-                    URL url = new File("src/views/members-view.fxml").toURL();
-                    Parent root = FXMLLoader.load(url);
-                    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(new Scene(root, 980, 700));
-                    window.show();
-                }
-                catch (Exception e)
+                if(result.get(0).get("userType").equals("admin"))
                 {
+                    try{
+                        URL url = new File("src/views/members-view.fxml").toURL();
+                        Parent root = FXMLLoader.load(url);
+                        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        window.setScene(new Scene(root, 980, 700));
+                        window.show();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    User user = new User(Integer.parseInt((String)result.get(0).get("id")),
+                            (String)result.get(0).get("firstname"),
+                            (String)result.get(0).get("lastname"),
+                            "user",
+                            (String)result.get(0).get("cne"),
+                            (String)result.get(0).get("email"),
+                            (String)result.get(0).get("password"),
+                            (String)result.get(0).get("level"));
+
+                    System.out.println("Welcoooooooooome");
+
+                    connectedUser = user;
+
+                    try{
+                        URL url = new File("src/views/user-view.fxml").toURL();
+                        Parent root = FXMLLoader.load(url);
+                        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        window.setScene(new Scene(root, 980, 700));
+                        window.show();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 
                 }
-
-
             }
         }
     }

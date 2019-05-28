@@ -27,7 +27,7 @@ public class CotisationAccess  {
     }
 
 
-    public static ObservableList getAll()
+    public static ObservableList<Cotisation> getAll()
     {
         ArrayList<HashMap<String, String>> allCotisations = Access.getAll(new Cotisation().getTable());
         ObservableList cotisations = FXCollections.observableArrayList();
