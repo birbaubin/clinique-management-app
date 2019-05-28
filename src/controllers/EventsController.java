@@ -176,6 +176,7 @@ public class EventsController extends Controller implements Initializable{
         {
             EventAccess.delete(selectedEvent.getId());
             refreshTable();
+            showDialog("Suppression d'un évènement", "L'évènement a été retiré avec succès", root);
         }
 
     }

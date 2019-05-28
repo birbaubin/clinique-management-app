@@ -7,7 +7,6 @@ module club.management.app {
     requires com.jfoenix;
     exports controllers;
     exports dao.models;
-    exports views;
     exports start;
 
 

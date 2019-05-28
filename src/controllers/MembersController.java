@@ -230,6 +230,7 @@ public ObservableList users;
         {
             UserAccess.delete(selectedMember.getId());
             refreshTable();
+            showDialog("Suppression d'un membre", "L'utilisateur a été retiré avec succès", root);
         }
 
     }
