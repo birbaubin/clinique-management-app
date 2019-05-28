@@ -57,7 +57,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                           </padding>
                      <children>
-                        <JFXButton fx:id="addMemberButton" layoutX="31.0" layoutY="121.0" onAction="#showAddMembersFields" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
+                        <JFXButton fx:id="addMemberButton" layoutX="31.0" layoutY="121.0" onAction="#addMemberButtonClicked" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>

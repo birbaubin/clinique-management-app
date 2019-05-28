@@ -35,8 +35,6 @@ public class EventsController extends Controller implements Initializable{
     public JFXButton membersViewButton;
     public JFXButton cotisationsViewButton;
     public JFXButton eventsViewButton;
-    //label on the top
-    public Label headerLabel;
     public JFXTextField addName;
     public JFXTextArea addDescription;
     public DatePicker addDate;
@@ -45,6 +43,7 @@ public class EventsController extends Controller implements Initializable{
     public JFXButton cancelButton;
     public TableView<Event> table;
     public ObservableList events;
+    public ActionEvent action;
 
 
 
@@ -73,83 +72,101 @@ public class EventsController extends Controller implements Initializable{
             container.getChildren().addAll(table);
             AnchorPane.setTopAnchor(table, 40.0);
             AnchorPane.setLeftAnchor(table, 100.0);
-
-            headerLabel.setText("Evènements");
            // headerLabel.setVisible(true);
         }
 
     }
 
-    public void addEventButtonClicked()
+    public void addEventButtonClicked(ActionEvent actionEvent)
+    {
+        showAddFields();
+        action = actionEvent;
+    }
+
+    public void showAddFields()
     {
         addName.setVisible(true);
         addDate.setVisible(true);
         addDescription.setVisible((true));
         okButton.setVisible(true);
         cancelButton.setVisible(true);
-        headerLabel.setText("Ajouter un évènement");
-        headerLabel.setVisible(true);
     }
 
-    public void updateEventButtonClicked()
+    public void updateEventButtonClicked(ActionEvent actionEvent)
     {
         Event selectedEvent = table.getSelectionModel().getSelectedItem();
         if(selectedEvent==null)
             showDialog("Modification d'un évènement", "Veuillez selectionner un évènement pour le modifier", root);
         else
         {
-            addDescription.setVisible(true);
-            addDate.setVisible((true));
-            addName.setVisible(true);
-            okButton.setVisible(true);
-            cancelButton.setVisible(true);
-            addName.setPromptText(selectedEvent.getName());
-            addDate.setPromptText(selectedEvent.getDate());
-            addDescription.setPromptText(selectedEvent.getDescription());
-            headerLabel.setText("Modifier un évènement");
-
+           showAddFields();
+           action = actionEvent;
         }
 
     }
 
-    public void okButtonClicked() throws Exception
+    public void okButtonClicked()
     {
-        System.out.println("You are here");
-        System.out.println("Value of input:" + headerLabel.getText());
-        if(headerLabel.getText().equals("Ajouter un évènement"))
+        if(action.getSource()==addEventButton)
         {
-            System.out.println("Hello");
             String name = addName.getText();
+            try {
+
             String date = String.valueOf(Date.valueOf(addDate.getValue()));
             String description = addDescription.getText();
 
 
             Event event = new Event(name, date, description);
+
             Validator.validateForAddEvent(event);
 
             EventAccess.store(event);
-            refreshTable();
+
             StackPane pane = new StackPane();
             root.getChildren().add(pane);
             showDialog("Ajout", "L'évènement a été ajouté avec succès", pane);
             hideAddFields();
-            System.out.println(date);
+            }
+            catch (NullPointerException e)
+            {
+                showDialog("Ajout d'un évènement", "veuilez entrer une date valide", root);
+            }
+            catch (Exception e)
+            {
+                //e.printStackTrace();
+                showDialog("Ajout d'un évènement", e.getMessage(), root);
+            }
+
+            System.out.println("You are here");
         }
 
-       if(headerLabel.getText().equals(("Modifier un évènement")))
+       if(action.getSource()==updateEventButton)
         {
             String name = addName.getText();
             String description = addDescription.getText();
-            String date = String.valueOf(Date.valueOf(addDate.getValue()));
-            Event event = table.getSelectionModel().getSelectedItem();
-            event.setDate(date);
-            event.setDescription(description);
-            event.setName(name);
-            Validator.validateForAddEvent(event);
-            EventAccess.update(event);
-            refreshTable();
-            hideAddFields();
-            showDialog("Mise à jour", "Les informations ont été modifiées avec succès", root);
+            try{
+                String date = String.valueOf(Date.valueOf(addDate.getValue()));
+                Event event = table.getSelectionModel().getSelectedItem();
+                event.setDate(date);
+                event.setDescription(description);
+                event.setName(name);
+
+                Validator.validateForAddEvent(event);
+                EventAccess.update(event);
+                refreshTable();
+                hideAddFields();
+                showDialog("Mise à jour", "Les informations ont été modifiées avec succès", root);
+            }
+            catch (NullPointerException e)
+            {
+                showDialog("Ajout d'un évènement", "veuilez entrer une date valide", root);
+            }
+            catch (Exception e)
+            {
+                //e.printStackTrace();
+                showDialog("Ajout d'un évènement", e.getMessage(), root);
+            }
+
 
         }
 
@@ -163,9 +180,23 @@ public class EventsController extends Controller implements Initializable{
         addName.setVisible((false));
         okButton.setVisible(false);
         cancelButton.setVisible(false);
-        headerLabel.setText("Evènements");
     }
 
+    public void reload()
+    {
+
+        try{
+            URL url = new File("src/views/cotisations-view.fxml").toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)((Node)action.getSource()).getScene().getWindow();
+            window.setScene(new Scene(root, 980, 700));
+            window.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     public void deleteEventButtonClicked()
     {
@@ -199,7 +230,7 @@ public class EventsController extends Controller implements Initializable{
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 

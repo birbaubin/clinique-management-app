@@ -70,7 +70,7 @@ public class Access {
                 request+=model.getArgs()[i]+" = '"+model.getAttributes()[i]+"', ";
             }
             request+=model.getArgs()[nbreArgs-1]+" = '"+model.getAttributes()[nbreArgs-1]+"' where id = "+model.getId()+";";
-           System.out.println(request);
+           //System.out.println(request);
         //" where id = "+id+";"
             try{
                 PreparedStatement st = con.prepareStatement(request);
@@ -88,7 +88,7 @@ public class Access {
     public static void delete(String  model, int id)
     {
         request = "delete from "+model+" where id = "+id+";";
-        System.out.println(request);
+        //System.out.println(request);
         try{
             PreparedStatement st = con.prepareStatement(request);
             st.execute();
@@ -121,7 +121,7 @@ public class Access {
                     }
                     result.add(row);
                 }
-                System.out.println(result);
+                //System.out.println(result);
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println(e.getMessage());

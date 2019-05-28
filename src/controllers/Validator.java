@@ -7,14 +7,14 @@ import dao.models.User;
 public class Validator {
 
     public static void validateForAddUser(User user) throws Exception {
-        if(user.getFirstname().equals(""))
-            throw new Exception("Veuillez entrer un prénom");
+        if(user.getFirstname().equals("") || isNumeric(user.getFirstname()))
+            throw new Exception("Veuillez entrer un prénom valide");
 
-        if(user.getLastname().equals(""))
-            throw new Exception("Veuillez entrer un nom");
+        if(user.getLastname().equals("") || isNumeric(user.getLastname()))
+            throw new Exception("Veuillez entrer un nom valide");
 
-        if(user.getCne().equals(""))
-            throw new Exception("Veuillez entrer le numéro de CNE");
+        if(user.getCne().equals("")  || !isNumeric(user.getCne()))
+            throw new Exception("Veuillez entrer le numéro de CNE valide");
 
         if(user.getEmail().equals(""))
             throw new Exception("Veuillez entrer un email");
@@ -24,6 +24,7 @@ public class Validator {
 
         if(user.getLevel().equals(""))
             throw new Exception("Veuillez entrer le niveau d\'études");
+
 
     }
 
@@ -46,6 +47,20 @@ public class Validator {
         if(cotisation.getTimeLimit().equals(""))
             throw new Exception("Veuillez entrer une date");
     }
+
+    public static boolean isNumeric(String string)
+    {
+        try{
+            Double number = Double.parseDouble(string);
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+    }
+
+
 
 
 }

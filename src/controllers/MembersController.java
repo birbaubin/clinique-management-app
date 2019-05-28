@@ -34,8 +34,7 @@ public JFXButton deleteMemberButton;
 public JFXButton membersViewButton;
 public JFXButton cotisationsViewButton;
 public JFXButton eventsViewButton;
-//label on the top
-public Label headerLabel;
+
 public JFXTextField addFirstname;
 public JFXTextField addLastname;
 public JFXTextField addCne;
@@ -47,6 +46,7 @@ public JFXButton okButton;
 public JFXButton cancelButton;
 public TableView<User> table;
 public ObservableList users;
+private ActionEvent action;
 
 
 
@@ -81,7 +81,6 @@ public ObservableList users;
             container.getChildren().addAll(table);
             AnchorPane.setTopAnchor(table, 40.0);
             AnchorPane.setLeftAnchor(table, 40.0);
-            headerLabel.setText("Membres");
         }
 
     }
@@ -97,29 +96,21 @@ public ObservableList users;
         addLevel.setVisible((true));
         okButton.setVisible(true);
         cancelButton.setVisible(true);
-        headerLabel.setText("Ajouter un membre");
+
     }
 
-    public void showUpdateMembersFields()
+    public void addMemberButtonClicked(ActionEvent actionEvent)
     {
-
-        addFirstname.setVisible(true);
-        addLastname.setVisible(true);
-        addCne.setVisible((true));
-        addEmail.setVisible((true));
-        addLevel.setVisible((true));
-        okButton.setVisible(true);
-        cancelButton.setVisible(true);
-        addPassword.setVisible(true);
-        confirmPassword.setVisible(true);
+        showAddMembersFields();
+        action = actionEvent;
     }
 
     public void okButtonClicked()
     {
-        if(headerLabel.getText().equals("Ajouter un membre"))
+        if(action.getSource()==addMemberButton)
         {
             System.out.println("Hello");
-            String firstname = addFirstname.getText();
+            String firstname = String.valueOf(addFirstname.getText());
             String lastname = addLastname.getText();
             String email = addEmail.getText();
             String cne = addCne.getText();
@@ -127,32 +118,28 @@ public ObservableList users;
             String secondPassword = confirmPassword.getText();
             String level = addLevel.getText();
 
-            System.out.println("firstname: "+firstname+" lastname: "+lastname);
+
             if(!password.equals(secondPassword))
                 showDialog("Ajout d'un membre", "Les deux mots de passe ne correspondent pas", root);
             else{
+
                 User user = new User(firstname, lastname, "user", cne, email, password, level);
                 try{
                     Validator.validateForAddUser(user);
                     UserAccess.store(user);
                     refreshTable();
-                    StackPane pane = new StackPane();
-                    root.getChildren().add(pane);
-                    showDialog("Ajout", "L'utilisateur a été ajouté avec succès", pane);
+                    showDialog("Ajout", "L'utilisateur a été ajouté avec succès", root);
                     cancelButtonClicked();
                 }
                 catch (Exception e)
                 {
-                    showDialog("Ajout d'un memebre", e.getMessage(), root);
+                    showDialog("Ajout d'un membre", e.getMessage(), root);
                 }
             }
 
-
-
-
         }
 
-        if(headerLabel.getText().equals(("Modifier les informations d'un membre")))
+        if(action.getSource()==updateMemberButton)
         {
             String firstname = addFirstname.getText();
             String lastname = addLastname.getText();
@@ -199,24 +186,18 @@ public ObservableList users;
         addLevel.setVisible((false));
         okButton.setVisible(false);
         cancelButton.setVisible(false);
-        headerLabel.setText("Membres");
     }
 
 
-    public void updateMemberButtonClicked() throws Exception
+    public void updateMemberButtonClicked(ActionEvent actionEvent) throws Exception
     {
 
             User selectedMember = table.getSelectionModel().getSelectedItem();
             if(selectedMember==null)
                 showDialog("Modification", "Veuillez sélectionner un membre pour modifier ses informations", root);
             else{
-                showUpdateMembersFields();
-                addFirstname.setPromptText(selectedMember.getFirstname());
-                addLastname.setPromptText(selectedMember.getLastname());
-                addCne.setPromptText(selectedMember.getCne());
-                addEmail.setPromptText(selectedMember.getEmail());
-                addLevel.setPromptText(selectedMember.getLevel());
-                headerLabel.setText("Modifier les informations d'un membre");
+                showAddMembersFields();
+               action = actionEvent;
             }
 
     }
