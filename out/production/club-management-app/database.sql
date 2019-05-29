@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `cotisations` (
   `description` text DEFAULT NULL,
   `timeLimit` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table club-app.events
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `description` varchar(50) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table club-app.notifications
@@ -63,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname` varchar(50) DEFAULT NULL,
   `level` varchar(50) DEFAULT NULL,
   `cne` varchar(50) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
+  `userType` varchar(50) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

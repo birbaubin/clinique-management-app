@@ -55,13 +55,13 @@ public class AuthController extends Controller{
         else
         {
             if(!(result.get(0).get("password")).equals(Hash.getSecurePassword(password)))
-                showAuthLabel("Mot de passe incorrect", authPassword);
+                showAuthLabel("Mot de passe incorrect ", authPassword);
             else
             {
                 if(result.get(0).get("userType").equals("admin"))
                 {
                     try{
-                        URL url = new File("src/views/members-view.fxml").toURL();
+                        URL url = new File("src/views/members-view.fxml").toURI().toURL();
                         Parent root = FXMLLoader.load(url);
                         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                         window.setScene(new Scene(root, 980, 700));
