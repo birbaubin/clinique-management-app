@@ -29,7 +29,6 @@ import java.util.ResourceBundle;
 
 public class CotisationsController extends Controller implements Initializable{
 
-    public AnchorPane container;
     public StackPane root;
     public JFXButton addCotisationButton;
     public JFXButton updateCotisationButton;
@@ -45,24 +44,17 @@ public class CotisationsController extends Controller implements Initializable{
 
     public JFXButton okButton;
     public JFXButton cancelButton;
-    private TableView<Cotisation> table;
+    public TableView<Cotisation> table;
     private ObservableList cotisations;
     private ActionEvent action;
+    public TableColumn amount;
+    public TableColumn date;
+    public TableColumn description;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        if(table==null)
-        {
-            table = new TableView<Cotisation>();
-            TableColumn<Cotisation, String> amount = new TableColumn<>("Montant");
-            amount.setMinWidth(150);
-            TableColumn<Cotisation, String> description = new TableColumn<>("Description");
-            description.setMinWidth(230);
-            TableColumn<Cotisation, String> date = new TableColumn<>("Date limite de paiement");
-            date.setMinWidth(150);
 
 
             amount.setCellValueFactory(new PropertyValueFactory("amount"));
@@ -72,14 +64,6 @@ public class CotisationsController extends Controller implements Initializable{
 
             cotisations = CotisationAccess.getAll();
             table.setItems(cotisations);
-            table.getColumns().addAll(amount, description, date);
-            container.getChildren().addAll(table);
-            AnchorPane.setTopAnchor(table, 40.0);
-            AnchorPane.setLeftAnchor(table, 100.0);
-
-            headerLabel.setText("Cotisations");
-            // headerLabel.setVisible(true);
-        }
 
     }
 
@@ -104,8 +88,6 @@ public class CotisationsController extends Controller implements Initializable{
 
     public void okButtonClicked() throws Exception
     {
-        System.out.println("You are here");
-        System.out.println("Value of input:" + headerLabel.getText());
         if(action.getSource()==addCotisationButton)
         {
             System.out.println("Hello");

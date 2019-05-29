@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import dao.access.UserAccess;
 import dao.models.User;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class MembersController extends Controller implements Initializable{
 
-public AnchorPane container;
+public VBox container;
 public StackPane root;
 public JFXButton addMemberButton;
 public JFXButton updateMemberButton;
@@ -47,25 +48,18 @@ public JFXButton cancelButton;
 public TableView<User> table;
 public ObservableList users;
 private ActionEvent action;
+public TableColumn firstname;
+public TableColumn lastname;
+public TableColumn email;
+public TableColumn cne;
+public TableColumn level;
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        if(table==null)
-        {
-            table = new TableView<User>();
-            TableColumn<User, String> firstname = new TableColumn<>("Prénom");
-            firstname.setMinWidth(120);
-            TableColumn<User, String> lastname = new TableColumn<>("Nom");
-            lastname.setMinWidth(120);
-            TableColumn<User, String> cne = new TableColumn<>("Cne");
-            cne.setMinWidth(120);
-            TableColumn<User, String> email = new TableColumn<>("email");
-            email.setMinWidth(150);
-            TableColumn<User, String> level = new TableColumn<>("Niveau");
-            level.setMinWidth(90);
+         //table = new TableView<User>();
 
             firstname.setCellValueFactory(new PropertyValueFactory("firstname"));
             lastname.setCellValueFactory(new PropertyValueFactory("lastname"));
@@ -76,12 +70,10 @@ private ActionEvent action;
 
             users = UserAccess.getAll();
             table.setItems(users);
-            table.getColumns().addAll(firstname, lastname, cne, email, level);
+            /*table.getColumns().addAll(firstname, lastname, cne, email, level);
             table.setEditable(true);
-            container.getChildren().addAll(table);
-            AnchorPane.setTopAnchor(table, 40.0);
-            AnchorPane.setLeftAnchor(table, 40.0);
-        }
+            container.getChildren().addAll(table);*/
+
 
     }
 
@@ -149,7 +141,7 @@ private ActionEvent action;
             String pass = addPassword.getText();
             String confirpass = confirmPassword.getText();
             if(!pass.equals(confirpass))
-                showDialog("Ajout d'un membre", "Les deux mots de passe ne correspondent pas", root);
+                showDialog("Modification des informations d'un membre", "Les deux mots de passe ne correspondent pas", root);
             else{
                 User user = table.getSelectionModel().getSelectedItem();
                 user.setFirstname(firstname);
@@ -163,7 +155,7 @@ private ActionEvent action;
                     UserAccess.update(user);
                     refreshTable();
                     cancelButtonClicked();
-                    showDialog("Ajout", "Les informations ont été modifiées avec succès", root);
+                    showDialog("Modification des informations d'un membre", "Les informations ont été modifiées avec succès", root);
                 }
                 catch (Exception e){
                     showDialog("Modification des informations d'un membre", e.getMessage(), root);
@@ -189,14 +181,25 @@ private ActionEvent action;
     }
 
 
+
     public void updateMemberButtonClicked(ActionEvent actionEvent) throws Exception
     {
 
             User selectedMember = table.getSelectionModel().getSelectedItem();
             if(selectedMember==null)
+            {
                 showDialog("Modification", "Veuillez sélectionner un membre pour modifier ses informations", root);
+                cancelButtonClicked();
+            }
+
             else{
                 showAddMembersFields();
+                addFirstname.setText(selectedMember.getFirstname());
+                addLastname.setText(selectedMember.getLastname());
+                addEmail.setText(selectedMember.getEmail());
+                addCne.setText(selectedMember.getCne());
+                addLevel.setText(selectedMember.getLevel());
+
                action = actionEvent;
             }
 
@@ -204,6 +207,7 @@ private ActionEvent action;
 
     public void deleteMemberButtonClicked()
     {
+        cancelButtonClicked();
         User selectedMember = table.getSelectionModel().getSelectedItem();
         if(selectedMember==null)
             showDialog("Suppression d'un membre", "Veuillez selectionner un membre pour le supprimer", root);
@@ -224,7 +228,6 @@ private ActionEvent action;
 
     public void loadCotisationsView(ActionEvent event)
     {
-        System.out.println("you vant to see cotisations");
         try{
             URL url = new File("src/views/cotisations-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
@@ -240,8 +243,6 @@ private ActionEvent action;
 
     public void loadEventsView(ActionEvent event)
     {
-        System.out.println("you vant to see events");
-
         try{
             URL url = new File("src/views/events-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);

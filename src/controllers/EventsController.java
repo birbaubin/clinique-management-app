@@ -38,7 +38,9 @@ public class EventsController extends Controller implements Initializable{
     public JFXTextField addName;
     public JFXTextArea addDescription;
     public DatePicker addDate;
-
+    public TableColumn name;
+    public TableColumn date;
+    public TableColumn description;
     public JFXButton okButton;
     public JFXButton cancelButton;
     public TableView<Event> table;
@@ -50,30 +52,13 @@ public class EventsController extends Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        if(table==null)
-        {
-            table = new TableView<Event>();
-            TableColumn<Event, String> name = new TableColumn<>("Nom de l'évènement");
-            name.setMinWidth(150);
-            TableColumn<Event, String> description = new TableColumn<>("Description");
-            description.setMinWidth(230);
-            TableColumn<Event, String> date = new TableColumn<>("Date");
-            date.setMinWidth(150);
-
 
             name.setCellValueFactory(new PropertyValueFactory("name"));
             date.setCellValueFactory(new PropertyValueFactory("date"));
             description.setCellValueFactory(new PropertyValueFactory("description"));
 
-
             events = EventAccess.getAll();
             table.setItems(events);
-            table.getColumns().addAll(name, description, date);
-            container.getChildren().addAll(table);
-            AnchorPane.setTopAnchor(table, 40.0);
-            AnchorPane.setLeftAnchor(table, 100.0);
-           // headerLabel.setVisible(true);
-        }
 
     }
 

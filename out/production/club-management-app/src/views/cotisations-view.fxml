@@ -6,11 +6,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CotisationsController">
@@ -19,13 +21,28 @@
             <children>
                 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
                     <top>
-                        <AnchorPane prefHeight="79.0" prefWidth="966.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="76.0" prefWidth="966.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
                             <children>
-                                <Label layoutX="428.0" layoutY="22.0" text="Evènements" textFill="WHITE">
+                                <Label layoutX="39.0" layoutY="24.0" text="Cotisations" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
+                                <JFXButton fx:id="membersViewButton" layoutX="508.0" layoutY="18.0" onAction="#loadMembersView" prefHeight="36.0" prefWidth="142.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton fx:id="cotisationsViewButton" layoutX="667.0" layoutY="18.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton fx:id="eventsViewButton" layoutX="821.0" layoutY="17.0" onAction="#loadEventsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </JFXButton>
                             </children>
                         </AnchorPane>
                     </top>
@@ -44,87 +61,49 @@
                                         <Font size="16.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXTextArea fx:id="addDescription" layoutX="276.0" layoutY="3.0" prefHeight="14.0" prefWidth="233.0" promptText="Description" visible="false" />
+                                <JFXTextArea fx:id="addDescription" labelFloat="true" layoutX="276.0" layoutY="3.0" prefHeight="14.0" prefWidth="233.0" promptText="Description" visible="false" />
                                 <DatePicker fx:id="addDate" layoutX="537.0" layoutY="13.0" promptText="date (ex:31/12/2019)" visible="false" />
                             </children>
                         </AnchorPane>
                     </bottom>
-                    <right>
-                        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="125.0" BorderPane.alignment="CENTER">
-                            <padding>
-                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                            </padding>
-                            <children>
-                                <JFXButton fx:id="addCotisationButton" layoutX="20.0" layoutY="123.0" onAction="#addCotisationButtonClicked" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                                <JFXButton fx:id="updateCotisationButton" layoutX="16.0" layoutY="201.0" onAction="#updateCotisationButtonClicked" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Modifier" textFill="WHITE">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                                <JFXButton fx:id="deleteCotisationButton" layoutX="9.0" layoutY="280.0" onAction="#deleteCotisationButtonClicked" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Supprimer" textFill="WHITE">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                            </children>
-                        </AnchorPane>
-                    </right>
                     <center>
-                        <AnchorPane fx:id="container" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="656.0" BorderPane.alignment="CENTER">
-                            <children>
-                                <Label fx:id="headerLabel" layoutX="14.0" layoutY="7.0" text="Evènements" textFill="#aeaeae" visible="false">
-                                    <font>
-                                        <Font name="System Bold" size="22.0" />
-                                    </font>
-                                </Label>
-                            </children></AnchorPane>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="106.0" prefWidth="980.0" spacing="100.0">
+                           <children>
+                                      <JFXButton fx:id="addCotisationButton" onAction="#addCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                      </JFXButton>
+                                      <JFXButton fx:id="updateCotisationButton" onAction="#updateCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Modifier" textFill="WHITE">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                      </JFXButton>
+                                      <JFXButton fx:id="deleteCotisationButton" onAction="#deleteCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Supprimer" textFill="WHITE">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                      </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </HBox>
+                        <TableView fx:id="table" maxWidth="-Infinity" prefHeight="400.0" prefWidth="880.0">
+                          <columns>
+                            <TableColumn fx:id="amount" minWidth="200.0" prefWidth="248.0" text="Montant" />
+                            <TableColumn fx:id="date" minWidth="150.0" prefWidth="227.0" text="Date limite de paiment" />
+                              <TableColumn fx:id="description" minWidth="300.0" prefWidth="404.0" text="Description" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </VBox>
                     </center>
-                    <left>
-                        <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="513.0" prefWidth="176.0" style="-fx-background-color: #27baba;" BorderPane.alignment="CENTER">
-                            <children>
-                                <JFXButton fx:id="membersViewButton" layoutX="13.0" layoutY="66.0" onAction="#loadMembersView" prefHeight="43.0" prefWidth="129.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                    <graphic>
-                                        <ImageView fitHeight="43.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../assets/team-member.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </JFXButton>
-                                <JFXButton fx:id="cotisationsViewButton" layoutX="13.0" layoutY="134.0" prefHeight="43.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                    <graphic>
-                                        <ImageView fitHeight="36.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../assets/coins.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </JFXButton>
-                                <JFXButton fx:id="eventsViewButton" layoutX="13.0" layoutY="200.0" onAction="#loadEventsView" prefHeight="43.0" prefWidth="151.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                    <graphic>
-                                        <ImageView fitHeight="38.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../assets/advertising.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </JFXButton>
-                            </children>
-                        </AnchorPane>
-                    </left>
                 </BorderPane>
             </children>
         </AnchorPane>
