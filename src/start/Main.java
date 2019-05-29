@@ -13,9 +13,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL url = new File("src/views/auth-view.fxml").toURL();
+        URL url = new File("src/views/auth-view.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
-        primaryStage.setTitle("Manage efficiently your club");
+        primaryStage.setTitle("Club-App");
         primaryStage.setScene(new Scene(root, 750, 600));
         primaryStage.show();
     }

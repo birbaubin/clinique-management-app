@@ -206,7 +206,7 @@ public class CotisationsController extends Controller implements Initializable{
     {
 
         try{
-            URL url = new File("src/views/events-view.fxml").toURL();
+            URL url = new File("src/views/events-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));
@@ -222,7 +222,7 @@ public class CotisationsController extends Controller implements Initializable{
     {
 
         try{
-            URL url = new File("src/views/members-view.fxml").toURL();
+            URL url = new File("src/views/members-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));

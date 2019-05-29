@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,12 +20,11 @@
          <top>
             <AnchorPane prefHeight="80.0" prefWidth="980.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="usernameLabel" layoutX="731.0" layoutY="25.0" prefHeight="30.0" prefWidth="150.0" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <JFXButton fx:id="avatarButton" contentDisplay="GRAPHIC_ONLY" layoutX="892.0" layoutY="13.0">
+                  <MenuButton fx:id="profileButton" contentDisplay="GRAPHIC_ONLY" layoutX="844.0" layoutY="17.0" mnemonicParsing="false">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#loadProfileInfos" text="Voir profil" />
+                      <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnexion" />
+                    </items>
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -31,26 +32,13 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </top>
-         <left>
-            <AnchorPane prefHeight="520.0" prefWidth="177.0" style="-fx-background-color: #e6fff7;" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton fx:id="eventsButton" layoutX="14.0" layoutY="182.0" onAction="#loadEvents" prefHeight="43.0" prefWidth="151.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
+                  </MenuButton>
+                  <Label fx:id="viewTitle" alignment="CENTER" layoutX="433.0" layoutY="25.0" prefHeight="30.0" prefWidth="150.0" text="Nothing" textFill="WHITE" visible="false">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/advertising.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="cotisationsButton" layoutX="14.0" layoutY="119.0" onAction="#loadCotisations" prefHeight="43.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
+                  </Label>
+                  <JFXButton fx:id="cotisationsButton" layoutX="25.0" layoutY="26.0" onAction="#loadCotisations" prefHeight="43.0" prefWidth="142.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -62,10 +50,27 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-               </children></AnchorPane>
+                  <JFXButton fx:id="eventsButton" layoutX="178.0" layoutY="26.0" onAction="#loadEvents" prefHeight="43.0" prefWidth="151.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/advertising.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <Label fx:id="usernameLabel" layoutX="729.0" layoutY="32.0" prefHeight="18.0" prefWidth="104.0" text="Label" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="520.0" prefWidth="1.0" style="-fx-background-color: #e6fff7;" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
-            <AnchorPane prefHeight="100.0" prefWidth="980.0" style="-fx-background-color: #e6fff7;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="100.0" prefWidth="980.0" style="-fx-background-color: -fx-focus-color:white;;" BorderPane.alignment="CENTER" />
          </bottom>
          <right>
             <AnchorPane prefHeight="520.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
@@ -73,7 +78,7 @@
          <center>
             <ScrollPane prefHeight="473.0" prefWidth="813.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="container" alignment="CENTER" prefHeight="518.0" prefWidth="811.0">
+                  <VBox fx:id="container" alignment="CENTER" prefHeight="518.0" prefWidth="976.0">
                      <opaqueInsets>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </opaqueInsets>

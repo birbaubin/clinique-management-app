@@ -83,11 +83,12 @@ public class AuthController extends Controller{
                             (String)result.get(0).get("level"));
 
                     System.out.println("Welcoooooooooome");
+                    System.out.println("id : "+user.getId());
 
                     connectedUser = user;
 
                     try{
-                        URL url = new File("src/views/user-view.fxml").toURL();
+                        URL url = new File("src/views/user-view.fxml").toURI().toURL();
                         Parent root = FXMLLoader.load(url);
                         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
                         window.setScene(new Scene(root, 980, 700));

@@ -226,7 +226,7 @@ private ActionEvent action;
     {
         System.out.println("you vant to see cotisations");
         try{
-            URL url = new File("src/views/cotisations-view.fxml").toURL();
+            URL url = new File("src/views/cotisations-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));
@@ -243,7 +243,7 @@ private ActionEvent action;
         System.out.println("you vant to see events");
 
         try{
-            URL url = new File("src/views/events-view.fxml").toURL();
+            URL url = new File("src/views/events-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));

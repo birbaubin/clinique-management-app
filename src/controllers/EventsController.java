@@ -182,21 +182,6 @@ public class EventsController extends Controller implements Initializable{
         cancelButton.setVisible(false);
     }
 
-    public void reload()
-    {
-
-        try{
-            URL url = new File("src/views/cotisations-view.fxml").toURL();
-            Parent root = FXMLLoader.load(url);
-            Stage window = (Stage)((Node)action.getSource()).getScene().getWindow();
-            window.setScene(new Scene(root, 980, 700));
-            window.show();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     public void deleteEventButtonClicked()
     {
@@ -222,7 +207,7 @@ public class EventsController extends Controller implements Initializable{
     {
 
         try{
-            URL url = new File("src/views/cotisations-view.fxml").toURL();
+            URL url = new File("src/views/cotisations-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));
@@ -238,7 +223,7 @@ public class EventsController extends Controller implements Initializable{
     {
 
         try{
-            URL url = new File("src/views/members-view.fxml").toURL();
+            URL url = new File("src/views/members-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(new Scene(root, 980, 700));

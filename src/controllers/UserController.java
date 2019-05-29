@@ -7,15 +7,22 @@ import dao.models.Cotisation;
 import dao.models.Event;
 import dao.models.User;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import dao.models.Cotisation;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -23,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class UserController extends Controller implements Initializable {
 
@@ -33,30 +41,38 @@ public class UserController extends Controller implements Initializable {
     public Label usernameLabel;
     public VBox container;
     private String flag;
-    public Label headerTitle;
+    public Label viewTitle;
+    private Label headerTitle;
+    private StackPane headerPane;
+    public MenuButton profileButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        flag = "";
         user = AuthController.connectedUser;
         String username = user.getFirstname()+" "+user.getLastname();
         usernameLabel.setText(username);
         headerTitle = new Label();
         container.getChildren().add(headerTitle);
-        headerTitle.setFont(Font.font("Calibri", 20));
+        headerTitle.setFont(Font.font("Calibri", 2));
         headerTitle.setTextFill(Color.web("#26302e", 0.8));
+        container.setSpacing(30);
+        container.setPadding(new Insets( 60, 20, 20, 20));
     }
 
     public void loadEvents()
     {
 
-        if(flag==null || flag.equals("cotisations"))
+        if(!flag.equals("events"))
         {
             ObservableList<Event> events = EventAccess.getAll();
             headerTitle.setText("Les évènements du club.");
             flag = "events";
             container.getChildren().clear();
-            container.getChildren().add(headerTitle);
+            insertHeader("Voici la liste des évènements organisés par votre club");
+            viewTitle.setVisible(true);
+            viewTitle.setText("Evènements");
             for(Event event: events)
             {
                 VBox pane = new VBox();
@@ -84,7 +100,7 @@ public class UserController extends Controller implements Initializable {
                 hBox.getChildren().addAll(dateText, date);
                 pane.getChildren().addAll(hBox);
 
-                pane.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);" +
+                pane.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.2, 0.0, 0.0);" +
                         "-fx-background-color: white;");
                 pane.setMaxWidth(600);
                 pane.setMinHeight(140);
@@ -93,31 +109,42 @@ public class UserController extends Controller implements Initializable {
 
             }
 
-            container.setSpacing(50);
-            container.setPadding(new Insets( 60, 20, 20, 20));
-
         }
 
 
     }
 
+    private void insertHeader(String text)
+    {
+        headerTitle.setText(text);
+        headerTitle.setFont(Font.font("calibri", 12));
+        headerPane = new StackPane();
+        headerPane.getChildren().add(headerTitle);
+        headerPane.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.2, 0.0, 0.0);" +
+                "-fx-background-color: #a6b2ad;");
+        headerPane.setMaxWidth(400);
+        headerPane.setMaxHeight(100);
+        headerPane.setPadding(new Insets(30, 30, 30, 30));
+        container.getChildren().add(headerPane);
+    }
+
     public void loadCotisations()
     {
-
-
-
-        if(flag==null || flag.equals("events"))
+        if(!flag.equals("cotisations"))
         {
+            viewTitle.setVisible(true);
+            viewTitle.setText("Cotisations");
             ObservableList<Cotisation> cotisations = CotisationAccess.getAll();
             flag = "cotisations";
             container.getChildren().clear();
+            insertHeader("Voici la liste des cotisations de votre club");
             headerTitle.setText("Les cotisations du club. Les avez vous toutes payées?");
-            container.getChildren().add(headerTitle);
+            //container.getChildren().add(headerTitle);
             for(Cotisation cotisation: cotisations)
             {
                 VBox pane = new VBox();
                 pane.setSpacing(15);
-                Label amountText = new Label("Somme à payer: ");
+                Label amountText = new Label("Somme ");
                 Label descriptionText = new Label("Description: ");
                 Label dateText = new Label("Date limite de paiement: ");
                 amountText.setFont(Font.font("Calibri", FontWeight.BOLD, 16));
@@ -140,6 +167,60 @@ public class UserController extends Controller implements Initializable {
                 hBox.getChildren().addAll(dateText, date);
                 pane.getChildren().addAll(hBox);
 
+                pane.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0.2, 0.0, 0.0);" +
+                        "-fx-background-color: white;");
+                pane.setMaxWidth(600);
+                pane.setMinHeight(140);
+                pane.setPadding(new Insets(20,20,20,20));
+                container.getChildren().add(pane);
+
+            }
+
+        }
+
+
+    }
+
+    public void  loadProfileInfos()
+    {
+
+        if(!flag.equals("profile"))
+        {
+            flag = "profile";
+            insertHeader("Vos informations");
+            ObservableList<Cotisation> cotisations = CotisationAccess.getAll();
+            container.getChildren().clear();
+            headerTitle.setText("votre compte et vos informations");
+            //container.getChildren().add(headerTitle);
+            viewTitle.setText("Profile");
+            VBox pane = new VBox();
+            pane.setSpacing(15);
+            Label lastnameText = new Label("NOM");
+            Label firstnameText = new Label("PRENOM(S): ");
+            Label cneText = new Label("CNE");
+            Label emailText = new Label("EMAIL");
+            Label levelText = new Label("LEVEL");
+            Label titleLabels[] = new Label[]{lastnameText, firstnameText, cneText, emailText, levelText};
+
+            Label firstname = new Label(String.valueOf(user.getFirstname()));
+            Label lastname = new Label(user.getLastname());
+            Label cne = new Label(user.getCne());
+            Label email = new Label(user.getEmail());
+            Label level = new Label(user.getLevel());
+            Label labels[] = new Label[]{firstname, lastname, cne, email, level};
+
+            for(Label label: titleLabels)
+            {
+                label.setFont(Font.font("Calibri", FontWeight.BOLD, 16));
+                label.setTextFill(Color.web("#144c41", 0.8));
+            }
+
+           for(int i = 0; i < labels.length; i++) {
+               HBox hBox = new HBox(10);
+               hBox.getChildren().addAll(titleLabels[i], labels[i]);
+               pane.getChildren().add(hBox);
+           }
+
                 pane.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);" +
                         "-fx-background-color: white;");
                 pane.setMaxWidth(600);
@@ -149,12 +230,25 @@ public class UserController extends Controller implements Initializable {
 
             }
 
-            container.setSpacing(50);
-            container.setPadding(new Insets( 60, 20, 20, 20));
+        container.setSpacing(50);
 
+    }
+
+    public void disconnect(ActionEvent event)
+    {
+
+        try{
+            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)(profileButton.getScene().getWindow());
+            window.setScene(new Scene(root, 750, 600));
+
+            window.show();
         }
-
-
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }
