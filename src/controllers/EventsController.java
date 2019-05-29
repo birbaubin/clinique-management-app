@@ -46,6 +46,8 @@ public class EventsController extends Controller implements Initializable{
     public TableView<Event> table;
     public ObservableList events;
     public ActionEvent action;
+    public MenuButton profileButton;
+
 
 
 
@@ -87,7 +89,6 @@ public class EventsController extends Controller implements Initializable{
            showAddFields();
            action = actionEvent;
         }
-
     }
 
     public void okButtonClicked()
@@ -151,11 +152,7 @@ public class EventsController extends Controller implements Initializable{
                 //e.printStackTrace();
                 showDialog("Ajout d'un évènement", e.getMessage(), root);
             }
-
-
         }
-
-
     }
 
     public void hideAddFields()
@@ -220,6 +217,19 @@ public class EventsController extends Controller implements Initializable{
         }
     }
 
+    public void disconnect()
+    {
+        try{
+            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)(profileButton.getScene().getWindow());
+            window.setScene(new Scene(root, 750, 600));
 
-
+            window.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

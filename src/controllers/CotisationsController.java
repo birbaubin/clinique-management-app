@@ -50,6 +50,7 @@ public class CotisationsController extends Controller implements Initializable{
     public TableColumn amount;
     public TableColumn date;
     public TableColumn description;
+    public MenuButton profileButton;
 
 
 
@@ -216,6 +217,22 @@ public class CotisationsController extends Controller implements Initializable{
         }
     }
 
+    public void disconnect()
+    {
+
+        try{
+            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)(profileButton.getScene().getWindow());
+            window.setScene(new Scene(root, 750, 600));
+
+            window.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 }

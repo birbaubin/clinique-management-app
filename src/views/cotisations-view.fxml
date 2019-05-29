@@ -6,8 +6,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,28 +25,40 @@
             <children>
                 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
                     <top>
-                        <AnchorPane prefHeight="76.0" prefWidth="966.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="80.0" prefWidth="966.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
                             <children>
                                 <Label layoutX="39.0" layoutY="24.0" text="Cotisations" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
-                                <JFXButton fx:id="membersViewButton" layoutX="508.0" layoutY="18.0" onAction="#loadMembersView" prefHeight="36.0" prefWidth="142.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
+                                <JFXButton fx:id="membersViewButton" layoutX="480.0" layoutY="18.0" onAction="#loadMembersView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXButton fx:id="cotisationsViewButton" layoutX="667.0" layoutY="18.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
+                                <JFXButton fx:id="cotisationsViewButton" layoutX="626.0" layoutY="18.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXButton fx:id="eventsViewButton" layoutX="821.0" layoutY="17.0" onAction="#loadEventsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
+                                <JFXButton fx:id="eventsViewButton" layoutX="771.0" layoutY="18.0" onAction="#loadEventsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                 </JFXButton>
+                        <MenuButton fx:id="profileButton" layoutX="902.0" layoutY="8.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="70.0">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnexion" />
+                           </items>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuButton>
                             </children>
                         </AnchorPane>
                     </top>

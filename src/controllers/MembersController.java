@@ -53,6 +53,7 @@ public TableColumn lastname;
 public TableColumn email;
 public TableColumn cne;
 public TableColumn level;
+public MenuButton profileButton;
 
 
 
@@ -70,9 +71,7 @@ public TableColumn level;
 
             users = UserAccess.getAll();
             table.setItems(users);
-            /*table.getColumns().addAll(firstname, lastname, cne, email, level);
-            table.setEditable(true);
-            container.getChildren().addAll(table);*/
+
 
 
     }
@@ -256,6 +255,20 @@ public TableColumn level;
         }
     }
 
+    public void disconnect()
+    {
+        try{
+            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Stage window = (Stage)(profileButton.getScene().getWindow());
+            window.setScene(new Scene(root, 750, 600));
 
+            window.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }
