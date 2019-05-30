@@ -12,6 +12,8 @@ import java.net.URL;
 public class Main extends Application {
 
     @Override
+
+    //Application starts here , by loading the authentication view
     public void start(Stage primaryStage) throws Exception{
         URL url = new File("src/views/auth-view.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);

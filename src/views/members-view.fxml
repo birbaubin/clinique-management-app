@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -67,9 +68,7 @@
                         <JFXTextField fx:id="addFirstname" labelFloat="true" layoutX="142.0" layoutY="63.0" promptText="Prénom" visible="false" />
                         <JFXTextField fx:id="addLastname" labelFloat="true" layoutX="140.0" layoutY="13.0" promptText="Nom" visible="false" />
                         <JFXTextField fx:id="addCne" labelFloat="true" layoutX="313.0" layoutY="13.0" promptText="CNE" visible="false" />
-                        <JFXTextField fx:id="addPassword" labelFloat="true" layoutX="515.0" layoutY="13.0" promptText="Mot de passe" visible="false" />
                         <JFXTextField fx:id="addLevel" labelFloat="true" layoutX="703.0" layoutY="13.0" promptText="Niveau" visible="false" />
-                        <JFXTextField fx:id="confirmPassword" labelFloat="true" layoutX="515.0" layoutY="63.0" promptText="Confirmer mot de passe" visible="false" />
                         <JFXTextField fx:id="addEmail" labelFloat="true" layoutX="313.0" layoutY="63.0" promptText="Email" visible="false" />
                         <JFXButton fx:id="okButton" layoutX="715.0" layoutY="60.0" onAction="#okButtonClicked" style="-fx-background-color: #27baba;" text="OK" textFill="WHITE" visible="false">
                            <font>
@@ -81,6 +80,8 @@
                               <Font size="14.0" />
                            </font>
                         </JFXButton>
+                        <JFXPasswordField fx:id="addPassword" layoutX="514.0" layoutY="13.0" promptText="Mot de passe" visible="false" />
+                        <JFXPasswordField fx:id="confirmPassword" layoutX="514.0" layoutY="63.0" promptText="Confirmer le mot de passe" visible="false" />
                      </children>
                   </AnchorPane>
                   </bottom>

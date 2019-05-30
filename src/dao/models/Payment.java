@@ -13,6 +13,7 @@ public class Payment extends Model{
         setTable();
     }
 
+    //see Model
     private void setArgs(){
         this.args = new String[]{"date", "cotisation_id", "member_id"};
     }

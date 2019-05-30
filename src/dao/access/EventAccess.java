@@ -29,6 +29,8 @@ public class EventAccess{
         {
             ArrayList<HashMap<String, String>> allEvents = Access.getAll(new Event().getTable());
             ObservableList events = FXCollections.observableArrayList();
+
+            //loop throug arraylist and add to observablelist
             for(HashMap event: allEvents) {
                 events.add(new Event(Integer.parseInt((String)event.get("id")),
                         (String) event.get("name"),

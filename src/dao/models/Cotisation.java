@@ -2,11 +2,13 @@ package dao.models;
 
 public class Cotisation extends Model{
 
+
+
     private double amount;
     private String description;
     private String timeLimit;
 
-
+    //see Model
     private void setArgs(){
         this.args = new String[]{"amount", "description", "timeLimit"};
     }

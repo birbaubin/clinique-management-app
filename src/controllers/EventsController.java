@@ -53,23 +53,28 @@ public class EventsController extends Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+            //assign table colums to user attributes
             name.setCellValueFactory(new PropertyValueFactory("name"));
             date.setCellValueFactory(new PropertyValueFactory("date"));
             description.setCellValueFactory(new PropertyValueFactory("description"));
 
+
+            //get all the events
             events = EventAccess.getAll();
             table.setItems(events);
 
     }
 
+
+    //runs when "Ajouter" button is clicked
     public void addEventButtonClicked(ActionEvent actionEvent)
     {
         showAddFields();
-        action = actionEvent;
+        action = actionEvent; //get event. See MembersController
     }
 
+
+    //show inputs
     public void showAddFields()
     {
         addName.setVisible(true);
@@ -77,42 +82,50 @@ public class EventsController extends Controller implements Initializable{
         addDescription.setVisible((true));
         okButton.setVisible(true);
         cancelButton.setVisible(true);
+        addName.clear();
+        addDescription.clear();
     }
 
+
+    //runs when "Modifier" button is clicked
     public void updateEventButtonClicked(ActionEvent actionEvent)
     {
-        Event selectedEvent = table.getSelectionModel().getSelectedItem();
-        if(selectedEvent==null)
+        Event selectedEvent = table.getSelectionModel().getSelectedItem(); //get selected event
+
+        if(selectedEvent==null) //if none selected
             showDialog("Modification d'un évènement", "Veuillez selectionner un évènement pour le modifier", root);
         else
         {
            showAddFields();
-           action = actionEvent;
+           addName.setText(selectedEvent.getName());
+           addDescription.setText(selectedEvent.getDescription());
+           action = actionEvent; //get event. See MembersController
         }
     }
 
+
+    // runs when "OK" button clicked
     public void okButtonClicked()
     {
+        //if we want to add
         if(action.getSource()==addEventButton)
         {
-            String name = addName.getText();
             try {
-
+                String name = addName.getText();
             String date = String.valueOf(Date.valueOf(addDate.getValue()));
             String description = addDescription.getText();
 
 
             Event event = new Event(name, date, description);
 
-            Validator.validateForAddEvent(event);
+            Validator.validateForAddEvent(event); //validate
 
-            EventAccess.store(event);
+            EventAccess.store(event); //store
 
-            StackPane pane = new StackPane();
-            root.getChildren().add(pane);
-            showDialog("Ajout", "L'évènement a été ajouté avec succès", pane);
+            showDialog("Ajout", "L'évènement a été ajouté avec succès", root);
             hideAddFields();
             }
+            //show errors
             catch (NullPointerException e)
             {
                 showDialog("Ajout d'un évènement", "veuilez entrer une date valide", root);
@@ -123,9 +136,10 @@ public class EventsController extends Controller implements Initializable{
                 showDialog("Ajout d'un évènement", e.getMessage(), root);
             }
 
-            System.out.println("You are here");
         }
 
+
+        //if we want to update
        if(action.getSource()==updateEventButton)
         {
             String name = addName.getText();
@@ -137,24 +151,26 @@ public class EventsController extends Controller implements Initializable{
                 event.setDescription(description);
                 event.setName(name);
 
-                Validator.validateForAddEvent(event);
-                EventAccess.update(event);
+                Validator.validateForAddEvent(event); //validate
+                EventAccess.update(event); //update
                 refreshTable();
                 hideAddFields();
                 showDialog("Mise à jour", "Les informations ont été modifiées avec succès", root);
             }
+            //show errors
             catch (NullPointerException e)
             {
                 showDialog("Ajout d'un évènement", "veuilez entrer une date valide", root);
             }
             catch (Exception e)
             {
-                //e.printStackTrace();
                 showDialog("Ajout d'un évènement", e.getMessage(), root);
             }
         }
     }
 
+
+    //hide inputs
     public void hideAddFields()
     {
         addDate.setVisible(false);
@@ -165,10 +181,11 @@ public class EventsController extends Controller implements Initializable{
     }
 
 
+    //runs when "Supprimer" button clicked
     public void deleteEventButtonClicked()
     {
-        Event selectedEvent = table.getSelectionModel().getSelectedItem();
-        if(selectedEvent==null)
+        Event selectedEvent = table.getSelectionModel().getSelectedItem(); //get selected event
+        if(selectedEvent==null) // if none
             showDialog("Suppression d'un évènement", "Veuillez selectionner un évènement pour le supprimer", root);
         else
         {
@@ -179,12 +196,16 @@ public class EventsController extends Controller implements Initializable{
 
     }
 
+
+    //get data form db and store in table
     public void refreshTable()
     {
         ObservableList events = EventAccess.getAll();
         table.setItems(events);
     }
 
+
+    //load cotisations view
     public void loadCotisationsView(ActionEvent event)
     {
 
@@ -201,6 +222,8 @@ public class EventsController extends Controller implements Initializable{
         }
     }
 
+
+    //load members view
     public void loadMembersView(ActionEvent event)
     {
 
@@ -217,19 +240,10 @@ public class EventsController extends Controller implements Initializable{
         }
     }
 
-    public void disconnect()
-    {
-        try{
-            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            Stage window = (Stage)(profileButton.getScene().getWindow());
-            window.setScene(new Scene(root, 750, 600));
 
-            window.show();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+    //disconnect
+   public void disconnect()
+   {
+       disconnect(profileButton); // see Controller class
+   }
 }

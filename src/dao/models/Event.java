@@ -27,6 +27,8 @@ public class Event extends Model {
     {
         table = "events";
     }
+
+    //See Model
     private void setArgs()
     {
         args = new String[]{"name", "date", "description"};

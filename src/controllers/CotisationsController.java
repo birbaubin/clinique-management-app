@@ -36,8 +36,6 @@ public class CotisationsController extends Controller implements Initializable{
     public JFXButton membersViewButton;
     public JFXButton cotisationsViewButton;
     public JFXButton eventsViewButton;
-    //label on the top
-    public Label headerLabel;
     public JFXTextField addAmount;
     public JFXTextArea addDescription;
     public DatePicker addDate;
@@ -57,23 +55,26 @@ public class CotisationsController extends Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+            //assign table columns to user attributes
             amount.setCellValueFactory(new PropertyValueFactory("amount"));
             date.setCellValueFactory(new PropertyValueFactory("timeLimit"));
             description.setCellValueFactory(new PropertyValueFactory("description"));
 
-
+            //get all cotisations
             cotisations = CotisationAccess.getAll();
             table.setItems(cotisations);
 
+
     }
 
+    //runs when add "Ajouter" button clicked
     public void addCotisationButtonClicked(ActionEvent actionEvent)
     {
         showAddFields();
         action = actionEvent;
     }
 
+    //runs when "Modifier" button clicked
     public void updateCotisationButtonClicked(ActionEvent actionEvent)
     {
         Cotisation selectedCotisation = table.getSelectionModel().getSelectedItem();
@@ -82,13 +83,19 @@ public class CotisationsController extends Controller implements Initializable{
         else
         {
             showAddFields();
+            addAmount.setText(String.valueOf(selectedCotisation.getAmount()));
+            addDescription.setText(selectedCotisation.getDescription());
             action = actionEvent;
         }
 
     }
 
+
+    //runs when "OK" button clicked
     public void okButtonClicked() throws Exception
     {
+
+        //if we want to add
         if(action.getSource()==addCotisationButton)
         {
             System.out.println("Hello");
@@ -108,9 +115,9 @@ public class CotisationsController extends Controller implements Initializable{
             System.out.println(date);
         }
 
-        if(action.getSource()==updateCotisationButton)
-        {
-            try{
+        //if we want to update
+        if(action.getSource()==updateCotisationButton) {
+            try {
                 Double amount = Double.valueOf(addAmount.getText());
                 String description = String.valueOf(addDescription.getText());
                 String date = String.valueOf(Date.valueOf(addDate.getValue()));
@@ -124,27 +131,20 @@ public class CotisationsController extends Controller implements Initializable{
                 hideAddFields();
                 showDialog("Mise à jour", "Les informations ont été modifiées avec succès", root);
             }
-            catch (NumberFormatException e)
-            {
+
+            //show errors
+            catch (NumberFormatException e) {
                 showDialog("Modification d'une cotisation", "Veuillez entrer un montant valide", root);
-            }
-            catch (NullPointerException e)
-            {
+            } catch (NullPointerException e) {
                 showDialog("Modification d'une cotisation", "Veuillez entrer une date valide", root);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-               // showDialog("Modification d'une cotisation", e.getMessage(), root);
+                // showDialog("Modification d'une cotisation", e.getMessage(), root);
             }
-
-
-
         }
-
-
     }
 
+    //hide inputs
     public void hideAddFields()
     {
         addDate.setVisible(false);
@@ -153,41 +153,43 @@ public class CotisationsController extends Controller implements Initializable{
         okButton.setVisible(false);
         cancelButton.setVisible(false);
     }
-
+    //show inputs to add or update
     public void showAddFields()
     {
-
+        addDescription.clear();
         addDescription.setVisible(true);
         addDate.setVisible((true));
         addAmount.setVisible(true);
+        addAmount.clear();
         okButton.setVisible(true);
         cancelButton.setVisible(true);
     }
-
-
+    //runs when "Supprimer" button clicked
     public void deleteCotisationButtonClicked()
     {
-        Cotisation selectedCotisation = table.getSelectionModel().getSelectedItem();
-        if(selectedCotisation==null)
+
+        Cotisation selectedCotisation = table.getSelectionModel().getSelectedItem(); //get selected user
+        if(selectedCotisation==null) //if none
             showDialog("Suppression d'une cotisation", "Veuillez selectionner une cotisation pour la supprimer", root);
         else
         {
-            EventAccess.delete(selectedCotisation.getId());
+            CotisationAccess.delete(selectedCotisation.getId());
             refreshTable();
             showDialog("Suppression d'une cotisation", "La cotisation a été retirée avec succès", root);
         }
 
     }
 
+    //reload data from db and show in table
     public void refreshTable()
     {
         ObservableList cotas = CotisationAccess.getAll();
         table.setItems(cotas);
     }
 
+    //runs when "Evènements" button clicked
     public void loadEventsView(ActionEvent event)
     {
-
         try{
             URL url = new File("src/views/events-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
@@ -201,9 +203,9 @@ public class CotisationsController extends Controller implements Initializable{
         }
     }
 
+    //runs when "Membres" button clicked
     public void loadMembersView(ActionEvent event)
     {
-
         try{
             URL url = new File("src/views/members-view.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
@@ -219,19 +221,7 @@ public class CotisationsController extends Controller implements Initializable{
 
     public void disconnect()
     {
-
-        try{
-            URL url = new File("src/views/auth-view.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            Stage window = (Stage)(profileButton.getScene().getWindow());
-            window.setScene(new Scene(root, 750, 600));
-
-            window.show();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        disconnect(profileButton);
     }
 
 

@@ -31,6 +31,7 @@ public class CotisationAccess  {
     {
         ArrayList<HashMap<String, String>> allCotisations = Access.getAll(new Cotisation().getTable());
         ObservableList cotisations = FXCollections.observableArrayList();
+        //loop throug arraylist and add to observablelist for table
         for(HashMap cotisation: allCotisations) {
             cotisations.add(new Cotisation(Integer.parseInt((String)cotisation.get("id")),
                     Double.valueOf((String)cotisation.get("amount")),

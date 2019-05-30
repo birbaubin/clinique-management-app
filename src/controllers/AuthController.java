@@ -20,19 +20,33 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+//Controls authentication
 public class AuthController extends Controller{
 
+
+    //labels for credentials errors. They appear when there is an auth error
     public Label authUsername, authPassword;
+
+    //auth inputs
     public JFXTextField email;
     public JFXPasswordField password;
+
+    //authenticated user. Variable is initialised when auth succeeds
     public static User connectedUser;
 
+
+    //validation button
     public JFXButton okButton;
 
+
+    //is called when validation button is clicked
     public void okClicked(ActionEvent event) throws IOException
     {
         String username = email.getText();
         String pass = password.getText();
+
+        //check if user entered email an pswd
         if(username.equals("") || pass.equals(""))
             showAuthLabel("Veuillez remplir tous les champs", authUsername);
         else
@@ -43,21 +57,32 @@ public class AuthController extends Controller{
 
     }
 
+    //checks if credentials are correct
     public void checkAuthentication(String email, String password, ActionEvent event)
     {
+
+
+
+        //search a user with the entered email
         HashMap<String, String> credentials = new HashMap<>();
         credentials.put("email", email);
-        //credentials.put("password", Hash.getSecurePassword(password));
         ArrayList<HashMap> result = UserAccess.search(credentials);
+
+        //if no result, show error
         if(result.isEmpty())
             showAuthLabel("Utilisateur inexistant", authUsername);
 
         else
         {
+
+            //if email exists, verify the entered pass
             if(!(result.get(0).get("password")).equals(Hash.getSecurePassword(password)))
                 showAuthLabel("Mot de passe incorrect ", authPassword);
+
+            //if all credentials are correct, check userType
             else
             {
+                //if admin, load admin view (members by default)
                 if(result.get(0).get("userType").equals("admin"))
                 {
                     try{
@@ -72,8 +97,11 @@ public class AuthController extends Controller{
                         e.printStackTrace();
                     }
                 }
+                //it is a user
                 else {
-                    User user = new User(Integer.parseInt((String)result.get(0).get("id")),
+
+                    //store user infos in a user model
+                    connectedUser = new User(Integer.parseInt((String)result.get(0).get("id")),
                             (String)result.get(0).get("firstname"),
                             (String)result.get(0).get("lastname"),
                             "user",
@@ -82,11 +110,8 @@ public class AuthController extends Controller{
                             (String)result.get(0).get("password"),
                             (String)result.get(0).get("level"));
 
-                    System.out.println("Welcoooooooooome");
-                    System.out.println("id : "+user.getId());
 
-                    connectedUser = user;
-
+                    //load simple user view
                     try{
                         URL url = new File("src/views/user-view.fxml").toURI().toURL();
                         Parent root = FXMLLoader.load(url);

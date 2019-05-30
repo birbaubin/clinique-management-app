@@ -51,6 +51,8 @@ public class User extends Model {
         this.id = id;
 
     }
+
+    //see Model
     private void setArgs()
     {
         this.args = new String[]{"firstname", "lastname", "userType", "cne", "email", "password", "level"};

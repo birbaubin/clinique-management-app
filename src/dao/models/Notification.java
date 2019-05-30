@@ -11,6 +11,7 @@ public class Notification extends Model {
         setTable();
     }
 
+    //see Model
     private void setArgs()
     {
         this.args = new String[]{"text", "member_id"};
