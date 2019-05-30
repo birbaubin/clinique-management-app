@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,12 +25,12 @@ import java.net.URL;
 
 public class Controller {
 
-    public void showDialog(String heading, String body, StackPane pane)
+    public void showDialog(String heading, String body, Pane pane)
     {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text(heading));
         content.setBody(new Text(body));
-        JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
+        JFXDialog dialog = new JFXDialog((StackPane) pane, content, JFXDialog.DialogTransition.CENTER);
         JFXButton ok = new JFXButton();
         content.setActions(ok);
         pane.getChildren().add(ok);

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController">
+   <children>
+      <AnchorPane prefHeight="562.0" prefWidth="200.0" style="-fx-background-color: #291f42;">
+         <children>
+            <VBox layoutY="122.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="eventsButton" onAction="#loadEvents" prefHeight="25.0" prefWidth="257.0" text="Evènements" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="cotisationsButton" onAction="#loadCotisations" prefHeight="25.0" prefWidth="257.0" text="Cotisations" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_RIGHT" layoutY="472.0" prefHeight="76.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="" onAction="#loadProfileInfos" prefHeight="25.0" prefWidth="257.0" text="Profile" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="logoutButton" onAction="#disconnect" prefHeight="25.0" prefWidth="257.0" text="Logout" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <Label layoutX="34.0" layoutY="14.0" prefHeight="56.0" prefWidth="133.0" text="CLUB" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="53.0" />
+               </font>
+            </Label>
+            <Label layoutX="73.0" layoutY="71.0" text="manager" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" prefHeight="562.0" prefWidth="894.0" style="-fx-background-color: #FFF;">
+         <children>
+            <AnchorPane prefHeight="37.0" prefWidth="396.0" />
+            <AnchorPane layoutY="37.0" prefHeight="86.0" prefWidth="901.0" style="-fx-background-color: #2b4066;">
+               <children>
+                  <Label fx:id="viewTitle" prefHeight="86.0" prefWidth="350.0" text="Accueil" textFill="WHITE">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="usernameLabel" layoutX="551.0" prefHeight="86.0" prefWidth="350.0" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="closeButton" ellipsisString="" layoutX="863.0" layoutY="-2.0" onAction="#onCloseButton" prefHeight="3.0" prefWidth="38.0" text="×" textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </JFXButton>
+            <AnchorPane layoutY="122.0" prefHeight="440.0" prefWidth="901.0">
+               <children>
+                  <ScrollPane prefHeight="440.0" prefWidth="901.0">
+                     <content>
+                        <VBox fx:id="container" alignment="CENTER" prefHeight="437.0" prefWidth="976.0">
+                           <opaqueInsets>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </opaqueInsets>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

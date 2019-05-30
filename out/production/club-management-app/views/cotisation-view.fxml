@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" prefHeight="444.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventsController">
+<StackPane fx:id="root" prefHeight="444.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CotisationsController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="896.0" style="-fx-background-color: red;">
          <children>
@@ -20,7 +20,7 @@
                   <AnchorPane fx:id="managingPanel" layoutX="14.0" layoutY="68.0" prefWidth="258.0">
                      <children>
                         <Label fx:id="infosLabel" layoutX="110.0" layoutY="21.0" prefWidth="39.0" />
-                        <JFXTextField fx:id="addName" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="50.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Nom" unFocusColor="#313b62" />
+                        <JFXTextField fx:id="addAmount" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="50.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Montant" unFocusColor="#313b62" />
                         <JFXButton fx:id="okButton" buttonType="RAISED" layoutX="9.0" layoutY="239.0" onAction="#okButtonClicked" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #313b62;" text="OK" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -43,17 +43,17 @@
                      <children>
                         <HBox alignment="CENTER" layoutX="31.0" layoutY="7.0" prefHeight="51.0" prefWidth="527.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="addEventButton" buttonType="RAISED" onAction="#addEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Ajouter" textFill="WHITE">
+                              <JFXButton fx:id="addCotisationButton" buttonType="RAISED" onAction="#addCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Ajouter" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="updateEventButton" buttonType="RAISED" onAction="#updateEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Modifier" textFill="WHITE">
+                              <JFXButton fx:id="updateCotisationButton" buttonType="RAISED" onAction="#updateCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Modifier" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="deleteEventButton" buttonType="RAISED" onAction="#deleteEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Supprimer" textFill="WHITE">
+                              <JFXButton fx:id="deleteCotisationButton" buttonType="RAISED" onAction="#deleteCotisationButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Supprimer" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -66,7 +66,7 @@
                      <children>
                         <TableView fx:id="table" prefHeight="317.0" prefWidth="527.0" style="-fx-background-color: transparent;">
                            <columns>
-                              <TableColumn fx:id="name" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" style="-fx-background-color: transparent;" text="Nom" />
+                              <TableColumn fx:id="amount" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" style="-fx-background-color: transparent;" text="Montant" />
                               <TableColumn fx:id="date" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Date " />
                               <TableColumn fx:id="description" maxWidth="200.0" minWidth="200.0" prefWidth="175.0" text="Description" />
                            </columns>

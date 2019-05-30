@@ -5,16 +5,20 @@ import dao.access.EventAccess;
 import dao.models.Cotisation;
 import dao.models.Event;
 import dao.models.User;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.MenuButton;
@@ -226,8 +230,21 @@ public class UserController extends Controller implements Initializable {
 
     }
 
-    public void disconnect(ActionEvent event)
+    public void disconnect(ActionEvent event)  throws IOException
     {
-        disconnect(profileButton);
+
+        URL url = new File("src/views/auth-view.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+    @FXML
+    void onCloseButton(ActionEvent event) {
+        System.out.println("close");
+        Platform.exit();
+    }
+
 }

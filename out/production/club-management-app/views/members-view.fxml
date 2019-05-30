@@ -3,137 +3,85 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MembersController">
+<StackPane fx:id="root" prefHeight="289.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MembersController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
-          <children>
-              <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
-                  <top>
-                      <AnchorPane prefHeight="80.0" prefWidth="980.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
-                          <children>
-                              <Label fx:id="headerLabel" layoutX="39.0" layoutY="24.0" text="Membres" textFill="WHITE">
-                                  <font>
-                                      <Font name="System Bold" size="22.0" />
-                                  </font>
-                              </Label>
-                              <JFXButton fx:id="membersViewButton" layoutX="480.0" layoutY="18.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </JFXButton>
-                              <JFXButton fx:id="cotisationsViewButton" layoutX="626.0" layoutY="18.0" onAction="#loadCotisationsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </JFXButton>
-                              <JFXButton fx:id="eventsViewButton" layoutX="771.0" layoutY="18.0" onAction="#loadEventsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </JFXButton>
-                        <MenuButton fx:id="profileButton" layoutX="902.0" layoutY="8.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="70.0">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnexion" />
-                           </items>
-                           <graphic>
-                              <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/user.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuButton>
-                          </children>
-                      </AnchorPane>
-                  </top>
-                  <bottom>
-                      <AnchorPane fx:id="manageMembersPanel" prefHeight="108.0" prefWidth="980.0" style="-fx-background-color: #e6fff7;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="896.0" style="-fx-background-color: red;">
+         <children>
+            <AnchorPane fx:id="rightPane" layoutX="614.0" prefHeight="454.0" prefWidth="288.0" style="-fx-background-color: #c5c1cf;">
+               <children>
+                  <AnchorPane fx:id="managingPanel" layoutX="14.0" layoutY="10.0" prefHeight="440.0" prefWidth="258.0">
                      <children>
-                        <Label fx:id="infosLabel" layoutX="482.0" layoutY="34.0" />
-                        <JFXTextField fx:id="addFirstname" labelFloat="true" layoutX="142.0" layoutY="63.0" promptText="Prénom" visible="false" />
-                        <JFXTextField fx:id="addLastname" labelFloat="true" layoutX="140.0" layoutY="13.0" promptText="Nom" visible="false" />
-                        <JFXTextField fx:id="addCne" labelFloat="true" layoutX="313.0" layoutY="13.0" promptText="CNE" visible="false" />
-                        <JFXTextField fx:id="addLevel" labelFloat="true" layoutX="703.0" layoutY="13.0" promptText="Niveau" visible="false" />
-                        <JFXTextField fx:id="addEmail" labelFloat="true" layoutX="313.0" layoutY="63.0" promptText="Email" visible="false" />
-                        <JFXButton fx:id="okButton" layoutX="715.0" layoutY="60.0" onAction="#okButtonClicked" style="-fx-background-color: #27baba;" text="OK" textFill="WHITE" visible="false">
+                        <Label fx:id="infosLabel" layoutX="110.0" layoutY="6.0" prefWidth="39.0" />
+                        <JFXTextField fx:id="addFirstname" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="16.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Prénom" unFocusColor="#313b62" />
+                        <JFXTextField fx:id="addLastname" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="64.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Nom" unFocusColor="#313b62" />
+                        <JFXTextField fx:id="addCne" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="117.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="CNE" unFocusColor="#313b62" />
+                        <JFXTextField fx:id="addLevel" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="166.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Niveau" unFocusColor="#313b62" />
+                        <JFXTextField fx:id="addEmail" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="217.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Email" unFocusColor="#313b62" />
+                        <JFXPasswordField fx:id="addPassword" layoutX="13.0" layoutY="277.0" maxWidth="233.0" minWidth="197.0" prefHeight="35.0" prefWidth="233.0" promptText="Mot de passe" />
+                        <JFXPasswordField fx:id="confirmPassword" layoutX="13.0" layoutY="312.0" maxWidth="233.0" minWidth="197.0" prefHeight="35.0" prefWidth="233.0" promptText="Confirmer le mot de passe" />
+                        <JFXButton fx:id="okButton" buttonType="RAISED" layoutX="11.0" layoutY="382.0" onAction="#okButtonClicked" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #313b62;" text="OK" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="cancelButton" layoutX="807.0" layoutY="60.0" onAction="#cancelButtonClicked" style="-fx-background-color: #27baba;" text="Annuler" textFill="WHITE" visible="false">
+                        <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="151.0" layoutY="382.0" onAction="#cancelButtonClicked" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #313b62;" text="Annuler" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXPasswordField fx:id="addPassword" layoutX="514.0" layoutY="13.0" promptText="Mot de passe" visible="false" />
-                        <JFXPasswordField fx:id="confirmPassword" layoutX="514.0" layoutY="63.0" promptText="Confirmer le mot de passe" visible="false" />
                      </children>
                   </AnchorPane>
-                  </bottom>
-               <right>
-                      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="0.0" BorderPane.alignment="CENTER">
-                          <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                          </padding>
-                      </AnchorPane>
-               </right>
-               <center>
-                  <VBox fx:id="container" prefHeight="526.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="leftPane" prefHeight="454.0" prefWidth="617.0" style="-fx-background-color: #7461e3;">
+               <children>
+                  <AnchorPane layoutX="13.0" layoutY="12.0" prefHeight="58.0" prefWidth="589.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="93.0" prefWidth="855.0" spacing="100.0">
+                        <HBox alignment="CENTER" layoutX="31.0" layoutY="7.0" prefHeight="51.0" prefWidth="527.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="addMemberButton" onAction="#addMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
+                              <JFXButton fx:id="addMemberButton" buttonType="RAISED" onAction="#addMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Ajouter" textFill="WHITE">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="updateMemberButton" onAction="#updateMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Modifier" textFill="WHITE">
+                              <JFXButton fx:id="updateMemberButton" buttonType="RAISED" onAction="#updateMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Modifier" textFill="WHITE">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="deleteMemberButton" onAction="#deleteMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Supprimer" textFill="WHITE">
+                              <JFXButton fx:id="deleteMemberButton" buttonType="RAISED" onAction="#deleteMemberButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Supprimer" textFill="WHITE">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </JFXButton>
                            </children>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
                         </HBox>
-                        <TableView fx:id="table" editable="true" prefHeight="400.0" prefWidth="880.0" tableMenuButtonVisible="true">
-                          <columns>
-                            <TableColumn fx:id="firstname" prefWidth="180.0" text="Prénom" />
-                            <TableColumn fx:id="lastname" minWidth="0.0" prefWidth="180.0" text="Nom" />
-                              <TableColumn fx:id="email" prefWidth="200.0" text="Email" />
-                              <TableColumn fx:id="cne" minWidth="0.0" prefWidth="180.0" text="Cne" />
-                              <TableColumn fx:id="level" minWidth="0.0" prefWidth="139.0" text="Classe" />
-                          </columns>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="44.0" layoutY="80.0" prefHeight="319.0" prefWidth="529.0">
+                     <children>
+                        <TableView fx:id="table" editable="true" prefHeight="319.0" prefWidth="537.0" tableMenuButtonVisible="true">
+                           <columns>
+                              <TableColumn fx:id="firstname" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" text="Prénom" />
+                              <TableColumn fx:id="lastname" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" text="Nom" />
+                              <TableColumn fx:id="email" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" text="Email" />
+                              <TableColumn fx:id="cne" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" text="Cne" />
+                              <TableColumn fx:id="level" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" text="Classe" />
+                           </columns>
                         </TableView>
                      </children>
-                     <padding>
-                        <Insets left="50.0" right="50.0" />
-                     </padding>
-                  </VBox>
-               </center>
-              </BorderPane>
-          </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
       </AnchorPane>
    </children>
 </StackPane>

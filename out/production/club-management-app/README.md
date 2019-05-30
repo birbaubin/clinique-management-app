@@ -1,3 +1,0 @@
-# club-management-app
-
-This Java application will help managing students clubs, by take care of member registration, events, cotisations, ...

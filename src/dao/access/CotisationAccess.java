@@ -36,7 +36,7 @@ public class CotisationAccess  {
             cotisations.add(new Cotisation(Integer.parseInt((String)cotisation.get("id")),
                     Double.valueOf((String)cotisation.get("amount")),
                     (String) (cotisation.get("description")),
-                    (String) cotisation.get("timeLimit")));
+                    new String((String) cotisation.get("timeLimit")).substring(0,10)));
         }
 
         return cotisations;
