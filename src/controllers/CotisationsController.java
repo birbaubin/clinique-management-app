@@ -3,9 +3,8 @@ package controllers;
 
 import com.jfoenix.controls.*;
 import dao.access.CotisationAccess;
-import dao.access.EventAccess;
 import dao.models.Cotisation;
-import dao.models.Event;
+import helpers.Validator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import dao.access.UserAccess;
-import dao.models.User;
+
 import java.sql.Date;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
