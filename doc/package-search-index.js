@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"club.management.app","l":"controllers"},{"m":"club.management.app","l":"dao"},{"m":"club.management.app","l":"dao.access"},{"m":"club.management.app","l":"dao.database"},{"m":"club.management.app","l":"dao.models"},{"m":"club.management.app","l":"helpers"},{"m":"club.management.app","l":"start"}]

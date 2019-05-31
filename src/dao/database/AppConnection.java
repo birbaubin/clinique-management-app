@@ -15,7 +15,6 @@ public class AppConnection {
         {
             try{
 
-                // get db properties
                 Properties props = new Properties();
                 props.load(new FileInputStream("env.properties"));
 
@@ -29,10 +28,8 @@ public class AppConnection {
             }
             catch(Exception e)
             {
-                System.out.println("Error occured");
                 e.printStackTrace();
             }
-
         }
         return con;
 

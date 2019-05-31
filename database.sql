@@ -58,7 +58,7 @@ INSERT INTO `events` (`id`, `name`, `description`, `date`) VALUES
 -- Dumping structure for table club-app.notifications
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` text NOT NULL DEFAULT '0',
+ `text` text NOT NULL DEFAULT '',
   `member_id` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
