@@ -10,31 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="created models">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/advertising.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/coins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/header.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/progress-arrows.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/team-member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/assets/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/club-management-app/views/auth-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/club-management-app/views/auth-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/advertising.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/coins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/header.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/progress-arrows.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/team-member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/database/AppConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/database/AppConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -115,16 +91,30 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/database/AppConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+            <state relative-caret-position="74">
+              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/capteurs/4.jpg">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -221,7 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/AddMemberAlertBox.java" />
         <option value="$PROJECT_DIR$/src/views/ConfirmationBox.java" />
         <option value="$PROJECT_DIR$/src/views/add-member-view.fxml" />
         <option value="$PROJECT_DIR$/src/views/MembersScene.java" />
@@ -272,6 +261,7 @@
         <option value="$PROJECT_DIR$/src/views/auth-view.fxml" />
         <option value="$PROJECT_DIR$/database.sql" />
         <option value="$PROJECT_DIR$/src/dao/Main.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -283,10 +273,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="273" />
     <option name="y" value="-8" />
-    <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="width" value="1214" />
+    <option name="height" value="560" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -307,17 +297,6 @@
             <path>
               <item name="club-management-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="club-management-app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="club-management-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="club-management-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="club-management-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="club-management-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -340,7 +319,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559320655439" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559329296634" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -706,7 +685,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.28895614" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.28895614" />
       <window_info id="Structure" order="1" weight="0.24962178" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -755,13 +734,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/helpers/Validator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/access/NotificationAccess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1101,13 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/helpers/ValidatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -1137,11 +1102,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/database/AppConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+        <state relative-caret-position="74">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/capteurs/4.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
         </state>
       </provider>
     </entry>
