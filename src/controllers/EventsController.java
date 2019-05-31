@@ -32,11 +32,8 @@ public class EventsController extends Controller implements Initializable{
     public JFXButton addEventButton;
     public JFXButton updateEventButton;
     public JFXButton deleteEventButton;
-    public JFXButton membersViewButton;
-    public JFXButton cotisationsViewButton;
-    public JFXButton eventsViewButton;
     public JFXTextField addName;
-    public JFXTextArea addDescription;
+    public JFXTextField addDescription;
     public DatePicker addDate;
     public TableColumn name;
     public TableColumn date;
@@ -62,6 +59,14 @@ public class EventsController extends Controller implements Initializable{
             //get all the events
             events = EventAccess.getAll();
             table.setItems(events);
+
+
+        addName.setVisible(false);
+        addDate.setVisible(false);
+        addDescription.setVisible((false));
+        okButton.setVisible(false);
+        cancelButton.setVisible(false);
+
 
     }
 
@@ -167,6 +172,9 @@ public class EventsController extends Controller implements Initializable{
                 showDialog("Ajout d'un évènement", e.getMessage(), root);
             }
         }
+
+
+        refreshTable();
     }
 
 

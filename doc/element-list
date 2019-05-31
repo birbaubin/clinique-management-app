@@ -1,0 +1,8 @@
+module:club.management.app
+controllers
+dao
+dao.access
+dao.database
+dao.models
+helpers
+start

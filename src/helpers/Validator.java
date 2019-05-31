@@ -7,6 +7,7 @@ import dao.models.User;
 public class Validator {
 
     public static void validateForAddUser(User user) throws Exception {
+
         if(user.getFirstname().equals("") || isNumeric(user.getFirstname()))
             throw new Exception("Veuillez entrer un prénom valide");
 
@@ -24,7 +25,6 @@ public class Validator {
 
         if(user.getLevel().equals(""))
             throw new Exception("Veuillez entrer le niveau d\'études");
-
 
     }
 

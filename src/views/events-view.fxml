@@ -1,127 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventsController">
-    <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
-            <children>
-                <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0">
-                    <top>
-                        <AnchorPane prefHeight="80.0" prefWidth="966.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" BorderPane.alignment="CENTER">
-                            <children>
-                                <Label layoutX="39.0" layoutY="24.0" text="Evènements" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="22.0" />
-                                    </font>
-                                </Label>
-                                <JFXButton fx:id="membersViewButton" layoutX="480.0" layoutY="18.0" onAction="#loadMembersView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Membres" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                                <JFXButton fx:id="cotisationsViewButton" layoutX="626.0" layoutY="18.0" onAction="#loadCotisationsView" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Cotisations" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                                <JFXButton fx:id="eventsViewButton" layoutX="771.0" layoutY="18.0" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: #f7f9f9; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Evènements" textFill="#756b6b">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </JFXButton>
-                        <MenuButton fx:id="profileButton" layoutX="902.0" layoutY="8.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="70.0">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnexion" />
-                          </items>
-                           <graphic>
-                              <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/user.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuButton>
-                            </children>
-                        </AnchorPane>
-                    </top>
-                    <bottom>
-                        <AnchorPane fx:id="manageMembersPanel" prefHeight="108.0" prefWidth="980.0" style="-fx-background-color: #e6fff7;" BorderPane.alignment="CENTER">
-                            <children>
-                                <Label fx:id="infosLabel" layoutX="482.0" layoutY="34.0" />
-                                <JFXTextField fx:id="addName" labelFloat="true" layoutX="115.0" layoutY="39.0" promptText="Nom" visible="false" />
-                                <JFXButton fx:id="okButton" layoutX="750.0" layoutY="33.0" onAction="#okButtonClicked" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="OK" textFill="WHITE" visible="false">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </JFXButton>
-                                <JFXButton fx:id="cancelButton" layoutX="841.0" layoutY="33.0" onAction="#hideAddFields" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Annuler" textFill="WHITE" visible="false">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </JFXButton>
-                        <JFXTextArea fx:id="addDescription" labelFloat="true" layoutX="288.0" layoutY="34.0" prefHeight="14.0" prefWidth="233.0" promptText="Description" visible="false" />
-                        <DatePicker fx:id="addDate" layoutX="545.0" layoutY="42.0" promptText="date (ex:31/12/2019)" visible="false" />
-                            </children>
-                        </AnchorPane>
-                    </bottom>
-                    <center>
-                  <VBox BorderPane.alignment="CENTER">
+<StackPane fx:id="root" prefHeight="444.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventsController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="896.0" style="-fx-background-color: red;">
+         <children>
+            <AnchorPane fx:id="rightPane" layoutX="614.0" prefHeight="454.0" prefWidth="286.0" style="-fx-background-color: #c5c1cf;">
+               <children>
+                  <AnchorPane fx:id="managingPanel" layoutX="14.0" layoutY="68.0" prefWidth="258.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="980.0" spacing="100.0">
+                        <Label fx:id="infosLabel" layoutX="110.0" layoutY="21.0" prefWidth="39.0" />
+                        <JFXTextField fx:id="addName" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="50.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Nom" unFocusColor="#313b62" />
+                        <JFXButton fx:id="okButton" buttonType="RAISED" layoutX="9.0" layoutY="239.0" onAction="#okButtonClicked" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #313b62;" text="OK" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="149.0" layoutY="239.0" onAction="#hideAddFields" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #313b62;" text="Annuler" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <DatePicker fx:id="addDate" layoutX="19.0" layoutY="164.0" prefHeight="25.0" prefWidth="227.0" promptText="date (ex:31/12/2019)" />
+                        <JFXTextField fx:id="addDescription" alignment="TOP_LEFT" focusColor="#313b62" labelFloat="true" layoutX="13.0" layoutY="104.0" maxWidth="233.0" minWidth="233.0" prefHeight="31.0" prefWidth="233.0" promptText="Description" unFocusColor="#313b62" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="leftPane" prefHeight="454.0" prefWidth="617.0" style="-fx-background-color: #7461e3;">
+               <children>
+                  <AnchorPane layoutX="13.0" layoutY="12.0" prefHeight="58.0" prefWidth="589.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="31.0" layoutY="7.0" prefHeight="51.0" prefWidth="527.0" spacing="10.0">
                            <children>
-                                      <JFXButton fx:id="addEventButton" onAction="#addEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Ajouter" textFill="WHITE">
-                                          <font>
-                                              <Font size="14.0" />
-                                          </font>
-                                      </JFXButton>
-                                      <JFXButton fx:id="updateEventButton" onAction="#updateEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Modifier" textFill="WHITE">
-                                          <font>
-                                              <Font size="14.0" />
-                                          </font>
-                                      </JFXButton>
-                                      <JFXButton fx:id="deleteEventButton" onAction="#deleteEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #27baba; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );" text="Supprimer" textFill="WHITE">
-                                          <font>
-                                              <Font size="14.0" />
-                                          </font>
-                                      </JFXButton>
+                              <JFXButton fx:id="addEventButton" buttonType="RAISED" onAction="#addEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Ajouter" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="updateEventButton" buttonType="RAISED" onAction="#updateEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Modifier" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="deleteEventButton" buttonType="RAISED" onAction="#deleteEventButtonClicked" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #7461e3;" text="Supprimer" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
                         </HBox>
-                        <TableView fx:id="table" prefHeight="400.0" prefWidth="880.0">
-                          <columns>
-                            <TableColumn fx:id="name" minWidth="200.0" prefWidth="248.0" text="Nom" />
-                            <TableColumn fx:id="date" prefWidth="227.0" text="Date " />
-                              <TableColumn fx:id="description" prefWidth="404.0" text="Description" />
-                          </columns>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="44.0" layoutY="80.0" prefHeight="319.0" prefWidth="529.0">
+                     <children>
+                        <TableView fx:id="table" prefHeight="317.0" prefWidth="527.0" style="-fx-background-color: transparent;">
+                           <columns>
+                              <TableColumn fx:id="name" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" style="-fx-background-color: transparent;" text="Nom" />
+                              <TableColumn fx:id="date" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Date " />
+                              <TableColumn fx:id="description" maxWidth="200.0" minWidth="200.0" prefWidth="175.0" text="Description" />
+                           </columns>
                         </TableView>
                      </children>
-                     <padding>
-                        <Insets left="50.0" right="50.0" />
-                     </padding>
-                  </VBox>
-                    </center>
-                </BorderPane>
-            </children>
-        </AnchorPane>
-    </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
 </StackPane>

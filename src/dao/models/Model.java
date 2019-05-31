@@ -20,6 +20,10 @@ public abstract  class Model extends  Object{
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public abstract Object[] getAttributes();
 
 }

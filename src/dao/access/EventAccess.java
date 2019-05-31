@@ -34,7 +34,7 @@ public class EventAccess{
             for(HashMap event: allEvents) {
                 events.add(new Event(Integer.parseInt((String)event.get("id")),
                         (String) event.get("name"),
-                        (String) (event.get("date")),
+                        new String((String) event.get("date")).substring(0,10),
                         (String) event.get("description")));
             }
 

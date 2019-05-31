@@ -6,13 +6,18 @@ import com.jfoenix.controls.JFXTextField;
 import dao.access.Hash;
 import dao.access.UserAccess;
 import dao.models.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,12 +27,13 @@ import java.util.HashMap;
 
 
 //Controls authentication
-public class AuthController extends Controller{
+public class AuthController extends Controller {
 
 
     //labels for credentials errors. They appear when there is an auth error
     public Label authUsername, authPassword;
 
+    @FXML
     //auth inputs
     public JFXTextField email;
     public JFXPasswordField password;
@@ -39,6 +45,9 @@ public class AuthController extends Controller{
     //validation button
     public JFXButton okButton;
 
+    //define your offsets here
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     //is called when validation button is clicked
     public void okClicked(ActionEvent event) throws IOException
@@ -86,11 +95,31 @@ public class AuthController extends Controller{
                 if(result.get(0).get("userType").equals("admin"))
                 {
                     try{
-                        URL url = new File("src/views/members-view.fxml").toURI().toURL();
+                        URL url = new File("src/views/layout/admin-main-layout.fxml").toURI().toURL();
                         Parent root = FXMLLoader.load(url);
-                        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        window.setScene(new Scene(root, 980, 700));
-                        window.show();
+                        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+
+                        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                xOffset = event.getSceneX();
+                                yOffset = event.getSceneY();
+                            }
+                        });
+
+                        //move around here
+                        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                stage.setX(event.getScreenX() - xOffset);
+                                stage.setY(event.getScreenY() - yOffset);
+                            }
+                        });
+
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                     }
                     catch (Exception e)
                     {
@@ -113,11 +142,31 @@ public class AuthController extends Controller{
 
                     //load simple user view
                     try{
-                        URL url = new File("src/views/user-view.fxml").toURI().toURL();
+                        URL url = new File("src/views/layout/user-main-layout.fxml").toURI().toURL();
                         Parent root = FXMLLoader.load(url);
-                        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        window.setScene(new Scene(root, 980, 700));
-                        window.show();
+                        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+
+                        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                xOffset = event.getSceneX();
+                                yOffset = event.getSceneY();
+                            }
+                        });
+
+                        //move around here
+                        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                stage.setX(event.getScreenX() - xOffset);
+                                stage.setY(event.getScreenY() - yOffset);
+                            }
+                        });
+
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                     }
                     catch (Exception e)
                     {
@@ -138,6 +187,10 @@ public class AuthController extends Controller{
     }
 
 
+     //is called when validation button is clicked
+    public void onCloseButton(ActionEvent event) throws IOException
+    {
+        Platform.exit();
 
-
+    }
 }

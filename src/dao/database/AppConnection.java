@@ -1,7 +1,9 @@
 package dao.database;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Properties;
 
 public class AppConnection {
 
@@ -12,14 +14,22 @@ public class AppConnection {
         if(con==null)
         {
             try{
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/club-app", "root", "");
+
+                Properties props = new Properties();
+                props.load(new FileInputStream("env.properties"));
+
+                String user = props.getProperty("user");
+                String password = props.getProperty("password");
+                String dburl = props.getProperty("dburl");
+
+                // connect to database
+                con = DriverManager.getConnection(dburl, user, password);
+
             }
             catch(Exception e)
             {
-                System.out.println("Error occured");
                 e.printStackTrace();
             }
-
         }
         return con;
 
